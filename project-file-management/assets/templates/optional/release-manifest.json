@@ -1,0 +1,18 @@
+{
+  "version": "v1.0.0",
+  "status": "draft",
+  "date": "2026-09-07",
+  "inputs": [],
+  "dependencies": [],
+  "verification": [],
+  "known_limitations": [
+    "模板：发布前填写真实验收结果，不能预填通过。"
+  ],
+  "files": [
+    {
+      "path": "artifact.ext",
+      "sha256": "REPLACE_WITH_ACTUAL_SHA256",
+      "document_version": "v1.0.0"
+    }
+  ]
+}

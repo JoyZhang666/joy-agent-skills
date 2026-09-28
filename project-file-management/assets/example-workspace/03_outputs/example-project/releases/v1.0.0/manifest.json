@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "status": "accepted",
+  "date": "2026-09-07",
+  "fictional_example": true,
+  "inputs": [
+    {
+      "path": "00_inbox/example-project/sources/需求说明.md",
+      "base": "example-workspace",
+      "sha256": "e274e73b94df5776e75740fb7a416a6b7d08a16f2522c736f35a8bc46fc13791"
+    }
+  ],
+  "dependencies": [
+    "UTF-8 Markdown reader"
+  ],
+  "verification": [
+    "虚构教学流程中的模拟验收；不代表真实业务验收"
+  ],
+  "known_limitations": [
+    "仅作为教学案例"
+  ],
+  "files": [
+    {
+      "path": "示例成果.md",
+      "sha256": "5a62620411471bbeea831109bc4f10880ad8c0b1c2f4a1d32bdcc0db96b33e36",
+      "document_version": "v1.0.0"
+    }
+  ]
+}

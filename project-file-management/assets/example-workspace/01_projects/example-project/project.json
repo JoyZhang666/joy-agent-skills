@@ -1,0 +1,16 @@
+{
+  "id": "example-project",
+  "title": "虚构示例项目",
+  "lifecycle": "active",
+  "stage_paths": {
+    "00_inbox": "00_inbox/example-project",
+    "01_projects": "01_projects/example-project",
+    "02_working": "02_working/example-project",
+    "03_outputs": "03_outputs/example-project"
+  },
+  "latest_release": "03_outputs/example-project/releases/v1.0.0",
+  "artifacts": [
+    "03_outputs/example-project/releases/v1.0.0/示例成果.md"
+  ],
+  "updated": "2026-09-07"
+}

@@ -7,6 +7,7 @@
 | Skill | 用途 | 版本 |
 |---|---|---|
 | [Get 会议行动](getnote-meeting-actions/README.md) | 从 Get 会议原文提取有依据的行动项，按编号执行并续接 | 2.0.0 |
+| [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记、交接与版本管理，配套模板和本地检查工具 | 1.1.2 |
 
 各 Skill 的使用方式、依赖与能力边界见对应目录的 README.md 和 SKILL.md。
 

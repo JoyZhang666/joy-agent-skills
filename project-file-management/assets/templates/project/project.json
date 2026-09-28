@@ -1,0 +1,11 @@
+{
+  "id": "project-id",
+  "title": "项目名称（请替换）",
+  "lifecycle": "active",
+  "stage_paths": {
+    "01_projects": "01_projects/project-id"
+  },
+  "latest_release": null,
+  "artifacts": [],
+  "updated": "2026-09-07"
+}
