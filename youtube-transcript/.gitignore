@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env*
+output/
+runs/
+*.jsonl
+*.mp3
+*.opus
+*.m4a
+*.backup-*
+*.log
