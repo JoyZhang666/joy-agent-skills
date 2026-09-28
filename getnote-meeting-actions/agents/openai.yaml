@@ -1,0 +1,6 @@
+interface:
+  display_name: "Get 会议行动"
+  short_description: "读取 Get 会议全文并按编号执行，成果默认仅本地保存，明确授权后才上传"
+  default_prompt: "使用 $getnote-meeting-actions 读取我指定的 Get 会议笔记，列出有原文依据的行动项，按我的选择执行，清单与成果仅保存在本地；除非我另行明确授权，否则不上传 Get。"
+policy:
+  allow_implicit_invocation: true
