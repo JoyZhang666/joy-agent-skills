@@ -43,6 +43,10 @@
 - **[全书精读工作流](full-book-deep-reading-workflow/README.md)** — 有原文定位的逐章笔记、阅读进度和范围明确的综述，可接续上次阅读。 `v2.0.1`
 - **[GetNote 知识库整理](getnote-knowledge-manager/README.md)** — 分类建议；在有效授权下归档，并逐条记录实际知识库 ID 的核验结果。 `v2.0.0`
 
+### 文档生成
+
+- **[适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md)** — 将 Markdown/HTML 排版为窄幅 PDF，支持受限本地素材；真实隔离渲染尚未验收，使用前请阅读验证限制。 `v1.0.4`
+
 ### 日常管理
 
 - **[项目文件管理](project-file-management/README.md)** — 工作区索引、项目登记与交接记录；本地辅助工具提供检查结果。 `v1.1.2`
