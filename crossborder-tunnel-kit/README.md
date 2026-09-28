@@ -8,7 +8,7 @@
 |---|---|
 | 自有或获授权的 Linux VPS、域名/TLS 等条件，以及明确的部署范围。 | 一份可导入 Mihomo 兼容客户端的个人 YAML、导入步骤和故障指引；VPS 部署与实际连接验收通过后即可使用。 |
 
-**先准备：**自备 Linux VPS、相关网络与证书条件；非一键安装器，未完成真实 VPS 端到端验收。
+先准备：自备 Linux VPS、相关网络与证书条件。
 
 [第一次使用 Skill](https://github.com/JoyZhang666/joy-agent-skills/blob/main/docs/start-here.md) · [部署准备入口](SKILL.md) · [返回全部作品](https://github.com/JoyZhang666/joy-agent-skills)
 
