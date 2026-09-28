@@ -13,7 +13,7 @@
 | [全书精读工作流](full-book-deep-reading-workflow/README.md) | 逐章原文精读、笔记与进度保存、断点续读和范围明确的综述 | 2.0.1 |
 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、事务记账、请求去重与一致性备份 | 1.1.0 |
 | [Youtube 转写全文稿](youtube-transcript/README.md) | 输入视频链接，生成 Markdown 全文稿，附新手 API 申请与配置指南 | 2.2.1 |
-| [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | 自有 VPS 的 Hysteria2 隧道部署准备与核查，可选 Reality/WARP；实验性 | 0.2.1 |
+| [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | 自有 VPS 的 Hysteria2 隧道部署准备与核查，可选 Reality/WARP；实验性 | 0.2.2 |
 
 各 Skill 的使用方式、依赖与能力边界见对应目录的 README.md 和 SKILL.md。
 
