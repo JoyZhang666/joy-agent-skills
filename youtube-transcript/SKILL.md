@@ -3,10 +3,18 @@ name: youtube-transcript
 description: Prepare a local transcript draft from an authorized YouTube source, using captions or explicitly approved Groq/Gemini processing. Preserve source ranges and report incomplete or uncertain results without claiming verified full transcription.
 license: MIT
 metadata:
-  version: "2.2.0"
+  version: "2.2.1"
 ---
 
-# YouTube 转写草稿
+# Youtube 转写全文稿
+
+## 输入、交付与首次引导
+
+用户提供一个 YouTube 视频链接及本地输出目录。主要交付物是按来源顺序保留口述内容的 Markdown 全文稿（.md），不是默认摘要或翻译；保留 generated-needs-review 等真实核验状态，不因中文名含“全文”而保证无遗漏。
+
+首次使用、缺少依赖或用户不懂 API 时，先读 [新手配置指南](references/setup.zh-CN.md)，再逐步引导：确认系统与已有环境，优先无密钥字幕；确需语音路线时，按申请难度和费用说明 Groq Turbo、Groq v3、Gemini 的区别，由用户选择。给出对应官方入口、创建密钥步骤、私密配置方法和预期检查结果。每次只推进一个可验证步骤，出现错误先解释和定位，不把长串命令一次丢给新手。
+
+不得让用户把密钥发进聊天；仅检查环境变量是否存在，不读取/回显其值。区分临时终端变量与 Agent 进程的继承范围。配置状态不等于服务连通：用户授权后用有权处理的短视频试跑，检查 Markdown 路径、状态和内容，再处理长视频。注册、付款、扩大额度由用户本人操作；不可替用户自动升级。定价、地区和页面变化时查最新官方说明。
 
 ## 先确认
 

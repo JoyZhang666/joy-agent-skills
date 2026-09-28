@@ -9,3 +9,5 @@ runs/
 *.m4a
 *.backup-*
 *.log
+
+.venv/
