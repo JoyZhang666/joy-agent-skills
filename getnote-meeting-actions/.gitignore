@@ -1,0 +1,43 @@
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+.getnote/
+credentials.json
+token.json
+tokens.json
+*.pem
+*.key
+
+# Filled-in profiles, meeting content, receipts and results
+profile.json
+actions.json
+archive.json
+ACTIONS.md
+receipt.json
+result.md
+source.txt
+metadata.json
+original.json
+knowledge-base.json
+verification.json
+raw/
+meeting-actions/
+runtime/
+private/
+logs/
+*.log
+*.ics
+
+# Local editor, interpreter and packaging artifacts
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.zip
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
