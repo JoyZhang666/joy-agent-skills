@@ -1,0 +1,16 @@
+{
+  "status": "local_only",
+  "authorization": {
+    "status": "not_requested",
+    "user_instruction": null,
+    "scope": null,
+    "recorded_at": null
+  },
+  "topic_id": null,
+  "title": null,
+  "content_file": null,
+  "content_sha256": null,
+  "idempotency_key": null,
+  "note_id": null,
+  "note_url": null
+}

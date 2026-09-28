@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": {
+    "note_id": null,
+    "note_url": null,
+    "title": null,
+    "content_sha256": null,
+    "version": null,
+    "scope": null,
+    "snapshot_path": null
+  },
+  "meeting_speaker_mapping": {},
+  "actions": [],
+  "batches": [],
+  "history": []
+}
