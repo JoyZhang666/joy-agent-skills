@@ -37,3 +37,9 @@
 ## 授权与第三方材料
 
 本包正文、模板与辅助脚本由作者授权采用 [MIT 许可证](../LICENSE) 发布，公开署名 JoyZhang666。各第三方项目遵循自己的仓库 LICENSE；本包只链接文档并编写自己的模板与说明，不打包第三方代码或二进制，也不替第三方重新授权。
+
+## v0.3.0 新增经验与接口来源
+
+维护者原创实战记录《YouTube 云 IP 风控解决方案 v1.1》（2026-09-06）经全文阅读后提炼为 [field-lessons.md](field-lessons.md)，纠正过度归因与配置隐患；私人笔记正文、ID、链接和基础设施信息不随包发布。使用不依赖原笔记。历史案例的业务验收与本包新模板验证分别记录。
+
+2026-09-29 核查官方 [Mihomo WireGuard](https://wiki.metacubex.one/config/proxies/wg/)、[DNS](https://wiki.metacubex.one/config/dns/)、[dialer-proxy](https://wiki.metacubex.one/config/proxies/dialer-proxy/) 与 [YouTube 错误排查](https://support.google.com/youtube/answer/3037019?hl=en)。接口参考不等于长期服务承诺。wgcf 只作为可选第三方工具链接，不打包或自动执行。

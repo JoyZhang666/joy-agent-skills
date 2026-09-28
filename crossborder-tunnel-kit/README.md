@@ -1,4 +1,4 @@
-![Crossborder Tunnel Kit：实验性 · 自有 VPS 必需](../assets/brand/crossborder-tunnel-kit.svg)
+![Crossborder Tunnel Kit：实验性 · 自有 VPS 必需](https://raw.githubusercontent.com/JoyZhang666/joy-agent-skills/main/assets/brand/crossborder-tunnel-kit.svg)
 
 # Crossborder Tunnel Kit
 
@@ -6,11 +6,11 @@
 
 | 你提供什么 | 得到什么 |
 |---|---|
-| 自有或获授权的 Linux VPS、域名/TLS 等条件，以及明确的部署范围。 | 部署准备、私有配置模板与检查记录；只有实际连通性测试通过才可判断部署成功。 |
+| 自有或获授权的 Linux VPS、域名/TLS 等条件，以及明确的部署范围。 | 一份可导入 Mihomo 兼容客户端的个人 YAML、导入步骤和故障指引；VPS 部署与实际连接验收通过后即可使用。 |
 
 **先准备：**自备 Linux VPS、相关网络与证书条件；非一键安装器，未完成真实 VPS 端到端验收。
 
-[第一次使用 Skill](../docs/start-here.md) · [部署准备入口](SKILL.md) · [返回全部作品](../README.md)
+[第一次使用 Skill](https://github.com/JoyZhang666/joy-agent-skills/blob/main/docs/start-here.md) · [部署准备入口](SKILL.md) · [返回全部作品](https://github.com/JoyZhang666/joy-agent-skills)
 
 <details>
 <summary>看一个虚构示例</summary>
@@ -23,9 +23,23 @@
 
 ---
 
-版本：**0.2.2** · 作者：**JoyZhang666** · [MIT](LICENSE) · 实验性
+版本：**0.3.0** · 作者：**JoyZhang666** · [MIT](LICENSE) · 实验性
 
-为自有或获授权的 Linux VPS 提供 Hysteria2 私有隧道部署准备、配置模板和检查工具，按需添加 Reality 备线与 WARP 出口。不是一键安装器，也不提供服务器、节点订阅、证书或 WARP 账号。
+**你最终拿到的是一份个人专用的 `tunnel-client.yaml` 配置文件，以及对应的导入、连接和故障处理说明。** 在你的 VPS 服务已部署、参数已填写并校验后，把这份文件导入电脑或手机上支持 Hysteria2 的 **Mihomo 兼容客户端**，选中配置和节点、启用已确认的接入方式，即可尝试连接自己的 VPS；完成实际连接和应用测试后才算交付成功。
+
+**新手使用：** 在客户端找到“配置／Profiles”→“导入本地文件”→选择 Agent 交付的 `.yaml`→启用该配置→选择 `HY2`→按[图形客户端导入指南](references/client-import.md)连接并验证。菜单名称可能不同，Agent 应按你的软件名称和版本逐步指导。其他 VPN 软件（包括只接受 WireGuard/OpenVPN 配置的软件）不一定兼容，不能把 YAML 当成通用格式。
+
+GitHub 中的是空白模板，不是已经能用的个人节点。Agent 根据你的私有参数生成 YAML；服务端配置由 Agent 管理，新手无需自行改写 JSON。真实 YAML 含密码和可能的 WARP 私钥，只应私密保存和传到自己的设备。
+
+本项目为自有或获授权的 Linux VPS 提供 Hysteria2 部署准备、配置生成和检查工具，可选 Reality 备线、客户端 WARP 链式出口或服务端 WARP 分流；不提供 VPS、节点订阅、证书或 WARP 账号。
+
+## 视频打不开？从这里排查
+
+- **已连接 VPS，YouTube 部分视频仍无法播放：** 先查[故障索引 F03–F07](references/troubleshooting.md)，再按[客户端 WARP-over-Hy2 方案](references/client-warp.md)核验出口、DNS 和会话一致性。
+- **配置导入失败／选了节点仍无网络：** 查[导入指南](references/client-import.md)和[故障索引 F01–F02](references/troubleshooting.md)。
+- **小包可用但视频卡顿、Google 反复验证码：** 查[实战经验与适用边界](references/field-lessons.md)。每条经验对应证据、修复、验证与回退路径。
+
+新增方案来自维护者的实战记录，经脱敏、纠错并整理为包内文档和模板；使用者无需访问私人笔记。当前公开版本仍须在自己的设备和网络上验收。
 
 ## 必要的外部条件是什么？
 
@@ -80,7 +94,7 @@ Agent 应先询问：“你是否已有自己拥有或获授权管理的 Linux V
 | 阶段 | 应交付的具体内容 |
 |---|---|
 | 只读检查／部署准备 | 条件核对清单、缺项及下一步、部署方案与变更／恢复计划；不声称已建成线路 |
-| 生成配置 | 用户私密目录中的服务端 JSON 和匹配的客户端 JSON、使用说明及已执行的解析检查结果；配置含凭据，不随公开包发布 |
+| 生成配置 | 用户私密目录中的服务端 JSON 和匹配的客户端 `tunnel-client.yaml`、导入说明及已执行的解析检查结果；配置含凭据，不随公开包发布 |
 | 获授权部署并验收 | VPS 上的 Hysteria2 服务、指定客户端和应用的接入说明，以及实际执行的握手、TLS、DNS、出口和应用测试记录 |
 | 维护交接 | 文件和服务位置、证书续期方式、启动／停止及恢复步骤、未通过的项目与后续行动；凭据继续单独保密 |
 
@@ -109,7 +123,7 @@ python scripts/scan.py .
 
 | 工具 | 用途与副作用 |
 |---|---|
-| scripts/render.py | 从私有参数生成新 JSON，拒绝覆盖；用法见[输入说明](references/inputs.md)，之后必须原生配置检查 |
+| scripts/render.py | 从私有参数生成 JSON；输出文件名以 .yaml/.yml 结尾时生成 YAML，拒绝覆盖；用法见[输入说明](references/inputs.md)，之后必须原生配置检查 |
 | scripts/scan.py | 只读扫描文本；默认公开模式，--runtime 仅检查占位符 |
 | scripts/verify.py | 只读比较可信预期 SHA-256，不下载文件 |
 | scripts/baseline.py | 默认本地元数据；--external-ip 才访问 Cloudflare 并输出敏感出口 IP |
@@ -119,8 +133,13 @@ python scripts/scan.py .
 
 ## 验证状态与限制
 
+v0.3.0 已通过 7 项虚构数据渲染回归测试，以及 Mihomo 1.19.30 对主线、Reality 备线、WARP 链式三种配置的 JSON/YAML 共 6 份文件的原生解析。可在受控开发环境运行 `python -B tests/test_render.py -v` 复验渲染；新模板尚未进行真实 GUI 导入、WARP 握手或视频播放验收。
+
 历史维护记录包含 Windows 合成测试和部分上游程序配置解析，具体版本及范围见 [versions.json](references/versions.json)。**尚未完成 Linux 服务权限、恢复 timer 实机演练、Hysteria 启动、真实 TLS/客户端握手及跨网验收。** 公开可阅读与可审查不等于生产可用；先在受控环境复验，不承诺解锁、匿名或无 IPv6/DNS 泄漏。
 
-v0.2.2 明确外部条件、用户输入、分阶段交付物，补充 VPS 获取指引与缺失时的停止条件；不改变 v0.2.1 的脚本与模板。
+v0.3.0 新增 YAML 输出、客户端导入指南与 WARP-over-Hy2 模板，补齐 DNS、出口一致性、MTU 等实战故障索引；保留无 VPS 时的停止条件。
 
 问题与改进可提交至[仓库 Issues](https://github.com/JoyZhang666/joy-agent-skills/issues)，仅附脱敏类别和复现步骤，不附凭据、服务器地址、配置正文或原始日志。第三方项目说明见 [LICENSE-NOTICE](LICENSE-NOTICE.md)。
+
+
+封面和仓库导航是可选在线资源；本包的配置生成、导入与排障说明均在包内，离线阅读不依赖这些链接。

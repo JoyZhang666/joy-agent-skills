@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render JSON templates from a protected JSON values file; never echo values."""
+"""Render JSON templates to JSON or YAML from protected values; never echo values."""
 import argparse
 import json
 import os
@@ -26,6 +26,27 @@ def expand(obj, values):
     return PLACEHOLDER_RE.sub(lambda m: str(values[m.group(1)]), obj)
 
 
+def yaml_text(obj, indent=0):
+    """Emit JSON-compatible scalars in block YAML; never interpolate raw values."""
+    pad = " " * indent
+    def scalar(value):
+        text = json.dumps(value, ensure_ascii=False, allow_nan=False)
+        for char in ("\u0085", "\u2028", "\u2029"):
+            text = text.replace(char, "\\u%04x" % ord(char))
+        return text
+    if not isinstance(obj, (dict, list)) or not obj:
+        return pad + scalar(obj) + "\n"
+    lines = []
+    pairs = obj.items() if isinstance(obj, dict) else ((None, value) for value in obj)
+    for key, value in pairs:
+        prefix = pad + (scalar(key) + ":" if key is not None else "-")
+        if isinstance(value, (dict, list)) and value:
+            lines.append(prefix + "\n" + yaml_text(value, indent + 2))
+        else:
+            lines.append(prefix + " " + scalar(value) + "\n")
+    return "".join(lines)
+
+
 def render(template, values_path, output):
     template, values_path, output = map(Path, (template, values_path, output))
     if values_path.is_symlink() or output.parent.is_symlink():
@@ -35,7 +56,8 @@ def render(template, values_path, output):
     # Windows requires a user-private directory ACL, checked by the operator.
     values = json.loads(values_path.read_text(encoding="utf-8-sig"))
     result = expand(json.loads(template.read_text(encoding="utf-8-sig")), values)
-    data = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+    data = (yaml_text(result) if output.suffix.lower() in (".yaml", ".yml")
+            else json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
     if "{{" in data or "}}" in data:
         raise ValueError("unresolved placeholder")
     fd = os.open(output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)

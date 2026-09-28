@@ -24,3 +24,7 @@ Mihomo 模板不引用外部规则数据库，解析时无需下载 geo 数据�
 - 授权后重启验证持久化；transient timer 不承诺跨重启。
 
 基线外部查询 `python scripts/baseline.py --external-ip` 会联系 Cloudflare，并输出该次请求的 IP（敏感证据）。它使用当前进程代理环境，只能证明这一次 HTTP 请求，不能证明整个系统路由。默认基线不查询公网。
+
+## v0.3.0 客户端交付验证
+
+先按 [client-import.md](client-import.md) 检查生成的 YAML、目标内核和 GUI 导入；WARP 链式按 [client-warp.md](client-warp.md) 检查 DNS、规则与出口一致性，再分别完成普通视频、MV、直播验收。功能测试证据见 [versions.json](versions.json)；配置解析不连接真实 VPS，也不能证明业务可用。

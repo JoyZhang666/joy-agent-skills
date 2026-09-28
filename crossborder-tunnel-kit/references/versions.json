@@ -1,5 +1,5 @@
 {
-  "skill_version": "0.2.2",
+  "skill_version": "0.3.0",
   "status": "experimental",
   "checked_date": "2026-09-11",
   "hysteria": {
@@ -40,5 +40,11 @@
       "exit_code": 0
     }
   ],
-  "limits": "Windows parse checks only. Not Linux deployment, runtime handshake, systemd or network acceptance."
+  "limits": "Windows parse checks only. Not Linux deployment, runtime handshake, systemd or network acceptance.",
+  "release_checks": {
+    "date": "2026-09-29",
+    "scope": "7 synthetic renderer regression tests passed; 6 JSON/YAML fixtures parsed by Mihomo 1.19.30 Windows amd64-compatible using -t. No live VPS, GUI import, WARP handshake or playback acceptance.",
+    "synthetic_fixtures": ["client-hy2.json", "client-hy2.yaml", "client-hy2-reality.json", "client-hy2-reality.yaml", "client-hy2-warp.json", "client-hy2-warp.yaml"],
+    "regression_command": "python -B tests/test_render.py -v"
+  }
 }

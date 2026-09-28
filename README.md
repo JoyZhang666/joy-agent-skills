@@ -53,7 +53,7 @@
 适合已有 Linux 与网络基础的使用者；请先阅读各项目的外部条件和能力边界。
 
 - **[mihomo 安装与运维](mihomo-vpn-install/README.md)** — 安装检查、配置与排障记录、回滚指引；实际变更按授权执行和核验。 `v2.1.2`
-- **[Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md)** — 部署准备、私有配置模板与检查记录；只有实际连通性测试通过才可判断部署成功。 `v0.2.2`
+- **[Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md)** — 交付 Mihomo 客户端 YAML 和导入指引，附 VPS 准备、WARP 链式与故障索引；实际连通性须验收。 `v0.3.0`
 
 ## 实践手记
 

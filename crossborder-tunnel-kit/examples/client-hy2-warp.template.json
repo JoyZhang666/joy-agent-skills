@@ -1,0 +1,94 @@
+{
+  "mixed-port": 7890,
+  "allow-lan": false,
+  "bind-address": "127.0.0.1",
+  "mode": "rule",
+  "log-level": "warning",
+  "ipv6": false,
+  "tun": {
+    "enable": false
+  },
+  "proxies": [
+    {
+      "name": "HY2",
+      "type": "hysteria2",
+      "server": "{{SERVER_HOST}}",
+      "port": "{{HY2_UDP_PORT}}",
+      "password": "{{HY2_PASSWORD}}",
+      "sni": "{{TLS_SERVER_NAME}}",
+      "skip-cert-verify": false,
+      "udp": true
+    },
+    {
+      "name": "WARP-via-HY2",
+      "type": "wireguard",
+      "server": "{{WARP_ENDPOINT_IP}}",
+      "port": "{{WARP_ENDPOINT_PORT}}",
+      "ip": "{{WARP_IPV4}}",
+      "private-key": "{{WARP_PRIVATE_KEY}}",
+      "public-key": "{{WARP_PUBLIC_KEY}}",
+      "udp": true,
+      "mtu": "{{WARP_MTU}}",
+      "remote-dns-resolve": true,
+      "dns": [
+        "1.1.1.1"
+      ],
+      "dialer-proxy": "HY2"
+    }
+  ],
+  "proxy-groups": [
+    {
+      "name": "SELECT",
+      "type": "select",
+      "proxies": [
+        "HY2"
+      ]
+    },
+    {
+      "name": "GOOGLE",
+      "type": "select",
+      "proxies": [
+        "WARP-via-HY2",
+        "HY2"
+      ]
+    }
+  ],
+  "rules": [
+    "DOMAIN-SUFFIX,youtube.com,GOOGLE",
+    "DOMAIN-SUFFIX,youtu.be,GOOGLE",
+    "DOMAIN-SUFFIX,youtubekids.com,GOOGLE",
+    "DOMAIN-SUFFIX,ytimg.com,GOOGLE",
+    "DOMAIN-SUFFIX,googlevideo.com,GOOGLE",
+    "DOMAIN-SUFFIX,youtubei.googleapis.com,GOOGLE",
+    "DOMAIN-SUFFIX,google.com,GOOGLE",
+    "DOMAIN-SUFFIX,googleapis.com,GOOGLE",
+    "DOMAIN-SUFFIX,gstatic.com,GOOGLE",
+    "DOMAIN-SUFFIX,googleusercontent.com,GOOGLE",
+    "DOMAIN-SUFFIX,ggpht.com,GOOGLE",
+    "DOMAIN-SUFFIX,gvt1.com,GOOGLE",
+    "DOMAIN-SUFFIX,gvt2.com,GOOGLE",
+    "DOMAIN-SUFFIX,withgoogle.com,GOOGLE",
+    "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
+    "MATCH,SELECT"
+  ],
+  "dns": {
+    "enable": true,
+    "listen": "127.0.0.1:1053",
+    "ipv6": false,
+    "enhanced-mode": "fake-ip",
+    "fake-ip-filter": [
+      "*.lan",
+      "+.local"
+    ],
+    "default-nameserver": [
+      "1.1.1.1"
+    ],
+    "proxy-server-nameserver": [
+      "https://1.1.1.1/dns-query"
+    ],
+    "nameserver": [
+      "https://1.1.1.1/dns-query#HY2",
+      "https://8.8.8.8/dns-query#HY2"
+    ]
+  }
+}

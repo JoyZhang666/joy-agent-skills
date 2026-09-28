@@ -11,6 +11,10 @@ backups/
 *.bak
 *.zip
 values.json
+tunnel-client*.yaml
+tunnel-client*.yml
+wgcf-account.toml
+wgcf-profile.conf
 rollback.json
 __pycache__/
 *.pyc

@@ -1,5 +1,10 @@
 # 可选备线与 WARP
 
+## 优先选择哪条路线
+
+Hy2 已连接但 YouTube/Google 出口有问题时，先读 [故障索引](troubleshooting.md) 和 [客户端 WARP-over-Hy2](client-warp.md)。该方案已有独立模板，优先在一台客户端验证，无须改服务器。下面的服务端 WARP 是需要集中管理时的另一条路线，不要把两者的参数、回退命令或验证结果混用。
+
+
 ## Reality 备线
 
 需要应对 UDP 不通等已确认问题时，再添加 Xray Reality：使用 `server-xray-reality.template.json` 和 `client-hy2-reality.template.json`，`SELECT` 手动选 HY2 或 REALITY。服务端 shortIds 与客户端 short-id 必须一致且非空。目标域名需从 VPS 实测，不把某个固定网站作为永久可靠前提。
