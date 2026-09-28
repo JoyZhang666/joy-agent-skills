@@ -1,6 +1,6 @@
 # mihomo VPN 安装与运维
 
-版本：**2.1.1** · 作者：**JoyZhang666** · 许可：**MIT**
+版本：**2.1.2** · 作者：**JoyZhang666** · 许可：**MIT**
 
 面向使用 AI Agent 管理 Linux 代理环境的人，提供安装检查、订阅格式识别、节点对照测试、TUN/DNS 排障、应用代理链诊断与回滚方法。它是指南和辅助工具集，不是一键 VPN，不提供订阅或节点服务。
 
@@ -8,7 +8,7 @@
 
 1. 阅读 [SKILL.md](SKILL.md)，按问题选择专题。
 2. 新安装从[安装流程](references/server-vpn-authorization-workflow.md)开始，使用[配置模板](references/mihomo-config-annotated.yaml)的私有副本。
-3. 首次安装先准备订阅 URL 或独立节点配置，保存在仓库外的私有文件中；向 Agent 仅提供文件位置和读取/验证授权。没有节点来源时应停在“等待节点配置”。本包 HTTP 模板需要有效订阅；独立节点配置需相应调整 provider 与策略组。
+3. 首次安装先准备订阅 URL 或独立节点配置。不会创建文件时，让 Agent 协助准备并给出具体位置；你用记事本打开、粘贴一行链接、保存关闭后回复“已保存”即可。文件操作不方便时，可在了解聊天留存风险后选择直接发送订阅 URL，详见[两种提供方式](references/server-vpn-authorization-workflow.md#如何提供订阅链接)。没有节点来源时应停在“等待节点配置”。本包 HTTP 模板需要有效订阅；独立节点配置需相应调整 provider 与策略组。
 4. 需要 Agent 使用时，将整个 `mihomo-vpn-install` 目录放入该 Agent 明确支持的技能目录；加载方式按其文档确认。也可直接阅读，不依赖其他私人 Skill。
 
 ## 环境和依赖
