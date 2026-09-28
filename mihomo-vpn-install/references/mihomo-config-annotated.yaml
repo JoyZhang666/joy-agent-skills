@@ -1,0 +1,36 @@
+# 教学模板；复制到私有目录后再填写。不可直接用于生产。
+# 示例为显式 HTTP/SOCKS 代理，不启用 TUN 或 DNS 接管。
+port: 7890
+socks-port: 7891
+allow-lan: false
+bind-address: "127.0.0.1"
+mode: rule
+log-level: warning
+external-controller: "127.0.0.1:9090"
+secret: "REPLACE_ME_CONTROLLER_SECRET"
+tun:
+  enable: false
+dns:
+  enable: false
+proxy-providers:
+  subscription:
+    type: http
+    url: "https://subscription.example.invalid/subscribe?token=REPLACE_ME"
+    path: "./providers/subscription.yaml"
+    interval: 3600
+    health-check:
+      enable: false
+      url: "https://www.gstatic.com/generate_204"
+      interval: 300
+proxy-groups:
+  - name: PROXY
+    type: select
+    use:
+      - subscription
+rules:
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - MATCH,PROXY
+# 私网或业务域名是否直连须按当前网络确认，再添加到 MATCH 前。
+# 本模板未使用 GEOIP，故不会因 GEOIP 规则引入数据库依赖。
+# token 和 controller secret 是不同凭据，不能复用。

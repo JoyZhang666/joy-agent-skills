@@ -1,0 +1,23 @@
+# Public examples live under references/. Real runtime material stays outside Git.
+.env
+.env.*
+private/
+providers/
+runtime/
+logs/
+*.log
+*.bak
+*.bak.*
+*.zip
+__pycache__/
+*.pyc
+.venv/
+.python_packages/
+config.yaml
+airport.yaml
+endpoints.json
+*subscription*.json
+*subscription*.txt
+ss_cfg*.json
+ss_test_config.json
+nodes_full.json
