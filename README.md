@@ -6,6 +6,7 @@
 
 | Skill | 用途 | 版本 |
 |---|---|---|
+| [GetNote 知识库整理](getnote-knowledge-manager/README.md) | 提出笔记分类建议，经有效授权归档并逐条核验结果 | 2.0.0 |
 | [Get 会议行动](getnote-meeting-actions/README.md) | 从 Get 会议原文提取有依据的行动项，按编号执行并续接 | 2.0.0 |
 | [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记、交接与版本管理，配套模板和本地检查工具 | 1.1.2 |
 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | Linux 代理安装检查、订阅与节点诊断、TUN/DNS 排障，附隐私保护辅助工具 | 2.1.2 |
