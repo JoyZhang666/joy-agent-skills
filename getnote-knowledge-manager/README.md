@@ -1,4 +1,27 @@
+![GetNote 知识库整理：需要 Get API · 归档前确认](../assets/brand/getnote-knowledge-manager.svg)
+
 # getnote-knowledge-manager
+
+**知识与阅读 · 需要 Get API · 归档前确认**
+
+| 你提供什么 | 得到什么 |
+|---|---|
+| 近期 Get 笔记的时间范围、目标知识库与分类规则。 | 分类建议；在有效授权下归档，并逐条记录实际知识库 ID 的核验结果。 |
+
+**先准备：**Python 3.10+、Get 官方 API、用户自己的 API Key 与 Client ID，以及相应读写权限。
+
+[第一次使用 Skill](../docs/start-here.md) · [配置与授权流程](SKILL.md) · [返回全部作品](../README.md)
+
+<details>
+<summary>看一个虚构示例</summary>
+
+> 虚构笔记“周末阅读想法” → 建议归入“阅读”｜状态：建议待确认，尚未归档。
+
+仅示意输入或输出的形式，不是真实用户资料或运行结果。
+
+</details>
+
+---
 
 版本：2.0.0。读取近期 Get 笔记，建议知识库分类，在有效授权下归档，并按实际知识库 ID 核验结果。
 

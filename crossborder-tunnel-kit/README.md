@@ -1,4 +1,27 @@
+![Crossborder Tunnel Kit：实验性 · 自有 VPS 必需](../assets/brand/crossborder-tunnel-kit.svg)
+
 # Crossborder Tunnel Kit
+
+**技术工具 · 实验性 · 自有 VPS 必需**
+
+| 你提供什么 | 得到什么 |
+|---|---|
+| 自有或获授权的 Linux VPS、域名/TLS 等条件，以及明确的部署范围。 | 部署准备、私有配置模板与检查记录；只有实际连通性测试通过才可判断部署成功。 |
+
+**先准备：**自备 Linux VPS、相关网络与证书条件；非一键安装器，未完成真实 VPS 端到端验收。
+
+[第一次使用 Skill](../docs/start-here.md) · [部署准备入口](SKILL.md) · [返回全部作品](../README.md)
+
+<details>
+<summary>看一个虚构示例</summary>
+
+> 虚构准备记录｜VPS：待提供｜证书：待确认｜状态：准备中，尚未部署。
+
+仅示意输入或输出的形式，不是真实用户资料或运行结果。
+
+</details>
+
+---
 
 版本：**0.2.2** · 作者：**JoyZhang666** · [MIT](LICENSE) · 实验性
 

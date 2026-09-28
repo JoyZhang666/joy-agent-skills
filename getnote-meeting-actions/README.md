@@ -1,4 +1,27 @@
+![Get 会议行动：Get 授权 · 默认本地保存](../assets/brand/getnote-meeting-actions.svg)
+
 # Get 会议行动 · v2.0.0
+
+**会议与执行 · Get 授权 · 默认本地保存**
+
+| 你提供什么 | 得到什么 |
+|---|---|
+| 你选定的 Get 会议原文，以及希望处理的范围。 | 带原文依据和稳定编号的行动清单；获授权执行后保存本地成果与续接记录。 |
+
+**先准备：**可读取授权会议原文的 Get 官方 CLI 与 Agent；辅助脚本需要 Python 3.10+。上传 Get 需另行授权。
+
+[第一次使用 Skill](../docs/start-here.md) · [开始使用](SKILL.md) · [返回全部作品](../README.md)
+
+<details>
+<summary>看一个虚构示例</summary>
+
+> A01｜整理活动方案的三个选项｜负责人：待确认｜依据：“下次讨论前先列三个方案。”
+
+仅示意输入或输出的形式，不是真实用户资料或运行结果。
+
+</details>
+
+---
 
 基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://github.com/zarazhangrui/lark-minutes-tasks) 改编，适配 Get 笔记与本地工作环境。完整来源、改动范围与许可见下文及 [来源记录](references/upstream.md)。
 

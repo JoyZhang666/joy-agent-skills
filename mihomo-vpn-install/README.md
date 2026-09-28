@@ -1,4 +1,27 @@
+![mihomo 安装与运维：进阶使用 · 自备节点](../assets/brand/mihomo-vpn-install.svg)
+
 # mihomo VPN 安装与运维
+
+**技术工具 · 进阶使用 · 自备节点**
+
+| 你提供什么 | 得到什么 |
+|---|---|
+| 获授权管理的 Linux 环境、私有订阅或节点配置，以及本次操作范围。 | 安装检查、配置与排障记录、回滚指引；实际变更按授权执行和核验。 |
+
+**先准备：**自备有效节点/订阅及上游 mihomo 程序；本项目不提供 VPN 或节点服务。
+
+[第一次使用 Skill](../docs/start-here.md) · [安装与授权流程](references/server-vpn-authorization-workflow.md) · [返回全部作品](../README.md)
+
+<details>
+<summary>看一个虚构示例</summary>
+
+> 虚构检查记录｜配置语法：通过｜节点连通性：未测试｜下一步：确认测试范围。
+
+仅示意输入或输出的形式，不是真实用户资料或运行结果。
+
+</details>
+
+---
 
 版本：**2.1.2** · 作者：**JoyZhang666** · 许可：**MIT**
 
