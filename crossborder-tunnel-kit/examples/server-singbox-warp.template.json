@@ -1,0 +1,59 @@
+{
+  "log": {
+    "level": "warn"
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "https",
+        "tag": "remote",
+        "server": "1.1.1.1",
+        "server_port": 443,
+        "path": "/dns-query",
+        "tls": {
+          "enabled": true,
+          "server_name": "cloudflare-dns.com"
+        },
+        "detour": "warp-ep"
+      }
+    ],
+    "final": "remote",
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "local-socks",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    }
+  ],
+  "endpoints": [
+    {
+      "type": "wireguard",
+      "tag": "warp-ep",
+      "system": false,
+      "mtu": 1280,
+      "address": [
+        "{{WARP_IPV4_CIDR}}"
+      ],
+      "private_key": "{{WARP_PRIVATE_KEY}}",
+      "peers": [
+        {
+          "address": "{{WARP_ENDPOINT_IP}}",
+          "port": "{{WARP_ENDPOINT_PORT}}",
+          "public_key": "{{WARP_PUBLIC_KEY}}",
+          "allowed_ips": [
+            "0.0.0.0/0"
+          ],
+          "persistent_keepalive_interval": 25,
+          "reserved": "{{WARP_RESERVED}}"
+        }
+      ]
+    }
+  ],
+  "route": {
+    "final": "warp-ep",
+    "default_domain_resolver": "remote"
+  }
+}

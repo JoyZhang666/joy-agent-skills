@@ -1,0 +1,44 @@
+{
+  "skill_version": "0.2.1",
+  "status": "experimental",
+  "checked_date": "2026-09-11",
+  "hysteria": {
+    "version": "app/v2.12.2",
+    "coverage": "official documentation/source review only; not started"
+  },
+  "native_checks": [
+    {
+      "engine": "sing-box",
+      "version": "1.14.0",
+      "asset_url": "https://github.com/SagerNet/sing-box/releases/download/v1.14.0/sing-box-1.14.0-windows-amd64.zip",
+      "sha256": "3ffb56267da14e287be48bd10cf7e6505260125bad940b75101fbb4d5d58e5d6",
+      "fixture": "server-singbox-warp.json",
+      "exit_code": 0
+    },
+    {
+      "engine": "xray",
+      "version": "26.3.27",
+      "asset_url": "https://github.com/XTLS/Xray-core/releases/download/v26.3.27/Xray-windows-64.zip",
+      "sha256": "d004c39288ce9ada487c6f398c7c545f7d749e44bdfdd59dbc9f865afba4e1ad",
+      "fixture": "server-xray-reality.json",
+      "exit_code": 0
+    },
+    {
+      "engine": "mihomo",
+      "version": "1.19.30",
+      "asset_url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.30/mihomo-windows-amd64-compatible-v1.19.30.zip",
+      "sha256": "289fde5e29d37a5b3326480590d8b3551c5bf7f8737290355c19bce74d57a563",
+      "fixture": "client-hy2.json",
+      "exit_code": 0
+    },
+    {
+      "engine": "mihomo",
+      "version": "1.19.30",
+      "asset_url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.30/mihomo-windows-amd64-compatible-v1.19.30.zip",
+      "sha256": "289fde5e29d37a5b3326480590d8b3551c5bf7f8737290355c19bce74d57a563",
+      "fixture": "client-hy2-reality.json",
+      "exit_code": 0
+    }
+  ],
+  "limits": "Windows parse checks only. Not Linux deployment, runtime handshake, systemd or network acceptance."
+}

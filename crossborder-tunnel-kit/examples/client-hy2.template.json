@@ -1,0 +1,35 @@
+{
+  "mixed-port": 7890,
+  "allow-lan": false,
+  "bind-address": "127.0.0.1",
+  "mode": "rule",
+  "log-level": "warning",
+  "ipv6": false,
+  "tun": {
+    "enable": false
+  },
+  "proxies": [
+    {
+      "name": "HY2",
+      "type": "hysteria2",
+      "server": "{{SERVER_HOST}}",
+      "port": "{{HY2_UDP_PORT}}",
+      "password": "{{HY2_PASSWORD}}",
+      "sni": "{{TLS_SERVER_NAME}}",
+      "skip-cert-verify": false
+    }
+  ],
+  "proxy-groups": [
+    {
+      "name": "SELECT",
+      "type": "select",
+      "proxies": [
+        "HY2"
+      ]
+    }
+  ],
+  "rules": [
+    "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
+    "MATCH,SELECT"
+  ]
+}

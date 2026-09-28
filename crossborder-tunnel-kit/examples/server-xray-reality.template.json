@@ -1,0 +1,43 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": "{{REALITY_TCP_PORT}}",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "{{REALITY_UUID}}",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "target": "{{REALITY_TARGET}}:443",
+          "xver": 0,
+          "serverNames": [
+            "{{REALITY_TARGET}}"
+          ],
+          "privateKey": "{{REALITY_PRIVATE_KEY}}",
+          "shortIds": [
+            "{{REALITY_SHORT_ID}}"
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    }
+  ]
+}

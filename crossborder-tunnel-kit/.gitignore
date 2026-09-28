@@ -1,0 +1,16 @@
+# Real configurations and credentials must stay outside this directory.
+.env
+.env.*
+private/
+runtime/
+logs/
+backups/
+*.log
+*.pem
+*.key
+*.bak
+*.zip
+values.json
+rollback.json
+__pycache__/
+*.pyc

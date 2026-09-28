@@ -1,0 +1,53 @@
+{
+  "mixed-port": 7890,
+  "allow-lan": false,
+  "bind-address": "127.0.0.1",
+  "mode": "rule",
+  "log-level": "warning",
+  "ipv6": false,
+  "tun": {
+    "enable": false
+  },
+  "proxies": [
+    {
+      "name": "HY2",
+      "type": "hysteria2",
+      "server": "{{SERVER_HOST}}",
+      "port": "{{HY2_UDP_PORT}}",
+      "password": "{{HY2_PASSWORD}}",
+      "sni": "{{TLS_SERVER_NAME}}",
+      "skip-cert-verify": false
+    },
+    {
+      "name": "REALITY",
+      "type": "vless",
+      "server": "{{SERVER_HOST}}",
+      "port": "{{REALITY_TCP_PORT}}",
+      "uuid": "{{REALITY_UUID}}",
+      "network": "tcp",
+      "tls": true,
+      "udp": true,
+      "flow": "xtls-rprx-vision",
+      "servername": "{{REALITY_TARGET}}",
+      "client-fingerprint": "chrome",
+      "reality-opts": {
+        "public-key": "{{REALITY_PUBLIC_KEY}}",
+        "short-id": "{{REALITY_SHORT_ID}}"
+      }
+    }
+  ],
+  "proxy-groups": [
+    {
+      "name": "SELECT",
+      "type": "select",
+      "proxies": [
+        "HY2",
+        "REALITY"
+      ]
+    }
+  ],
+  "rules": [
+    "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve",
+    "MATCH,SELECT"
+  ]
+}

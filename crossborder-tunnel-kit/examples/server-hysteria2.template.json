@@ -1,0 +1,13 @@
+{
+  "listen": ":{{HY2_UDP_PORT}}",
+  "tls": {
+    "cert": "{{TLS_CERT_PATH}}",
+    "key": "{{TLS_KEY_PATH}}",
+    "sniGuard": "strict"
+  },
+  "auth": {
+    "type": "password",
+    "password": "{{HY2_PASSWORD}}"
+  },
+  "disableUDP": false
+}

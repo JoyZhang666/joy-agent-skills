@@ -1,0 +1,33 @@
+{
+  "listen": ":{{HY2_UDP_PORT}}",
+  "tls": {
+    "cert": "{{TLS_CERT_PATH}}",
+    "key": "{{TLS_KEY_PATH}}",
+    "sniGuard": "strict"
+  },
+  "auth": {
+    "type": "password",
+    "password": "{{HY2_PASSWORD}}"
+  },
+  "disableUDP": false,
+  "outbounds": [
+    {
+      "name": "direct",
+      "type": "direct"
+    },
+    {
+      "name": "warp",
+      "type": "socks5",
+      "socks5": {
+        "addr": "127.0.0.1:1080"
+      }
+    }
+  ],
+  "acl": {
+    "inline": [
+      "warp(suffix:youtube.com)",
+      "warp(suffix:googlevideo.com)",
+      "direct(all)"
+    ]
+  }
+}
