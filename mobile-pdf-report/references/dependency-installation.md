@@ -1,12 +1,14 @@
 # 必需依赖的检查、授权安装与配置（供 Agent 使用）
 
-适用：mobile-pdf-report 1.0.4；资料核对日期：2026-09-28。以下是安装操作指引，不代表用户已经批准安装，也不代表已在所有平台实测。
+适用：mobile-pdf-report 1.0.5；资料核对日期：2026-09-29。以下是安装操作指引，不代表用户已经批准安装，也不代表已在所有平台实测。
+
+平台支持层级见 [README](../README.md#系统环境与平台状态)：本指引提供配置路线，不代表各平台均已实测。Windows 11 x64 仅依赖加载有证据；Linux 未验证，macOS 实验性。
 
 ## 1. 先解释清楚，再申请授权
 
 本 Skill 不捆绑 WeasyPrint、Python、Pango、pypdf 或字体的安装包/二进制。requirements.txt 只是 Python 依赖清单，解压或安装 Skill 不会安装依赖。当前包装器必须使用 **WeasyPrint 70.0 的 Python API**，仅装 WeasyPrint 独立 EXE 或把 weasyprint 命令加入 PATH 都不够。
 
-运行前必需：Python 3.10+、WeasyPrint 70.0、Pango 及其原生依赖、pypdf（范围见 requirements.txt），以及可显示正文的中文字体。Python Markdown 是可选增强；pdfinfo 仅为可选诊断工具。缺任何必需项，停止 PDF 生成，先解决依赖。
+运行前必需：Python 3.10+、WeasyPrint 70.0、Pango >=1.44 及其原生依赖、pypdf（范围见 requirements.txt），以及可显示正文的中文字体。Python Markdown 是可选增强；pdfinfo 仅为可选诊断工具。缺任何必需项，停止 PDF 生成，先解决依赖。
 
 Agent 先只读检查现有解释器、版本/架构、可用磁盘和目标目录权限；优先复用兼容运行时，Python 包放专用虚拟环境。不要为了探测而运行可能自动下载运行时的裸 python/py 启动别名；先通过已知绝对路径或 Python 管理器的 list 查询确认已安装解释器。
 
@@ -141,6 +143,10 @@ sudo apt install python3-venv python3-pip libpango-1.0-0 libpangoft2-1.0-0 libha
 macOS 如已有 Homebrew，可在批准后安装 Pango 原生依赖（brew install pango）；Python 需先核实 >=3.10。不要用未指定版本的 brew install weasyprint 代替本 Skill 的 Python 70.0 基线。Homebrew 缺失时安装它属于额外变更，须说明后得到同意，不能偷偷引导安装。
 
 随后在第 2 节选定的用户目录创建 venv，使用其绝对解释器执行 python -m pip --isolated install --index-url https://pypi.org/simple --only-binary=:all: -r 【Skill目录/requirements.txt】，再执行 pip check、python -m weasyprint --info 和 scripts/check_dependencies.py。实际命令中的 python 必须替换为该 venv 的 bin/python，路径含空格时正确引用。不要使用 sudo pip 或升级系统 Python 包。若原生库仍不可见，按官方缺库排错定位，不自动写入全局环境。
+
+macOS 的 Python、Pango 与已安装 wheel 必须使用兼容架构；Apple Silicon 不要将 ARM64 Python 与 Intel Homebrew 库混用。需要手动查找 dylib 时，使用实际确认的库目录设置进程级 DYLD_FALLBACK_LIBRARY_PATH，并在调用后恢复，不能照抄其他机器的路径。1.0.5 渲染子进程保留该变量及 FONTCONFIG_FILE，后者只能指向用户确认的运行时配置，不能由输入 HTML 决定。不要持久更改全局环境。
+
+非 Windows 渲染会设置 RLIMIT_CPU 和 RLIMIT_AS；macOS 等系统的可用性及限制语义不同，依赖探针不检验这些运行限制。若设置失败或地址空间不足，不得绕过限制以宣称成功；记录未验证状态。详情见 [Python resource 官方说明](https://docs.python.org/3/library/resource.html)。Linux/macOS 的素材/输出目录必须确认不是网络挂载且路径祖先无符号链接。
 
 这些分支是有来源的安装指引，尚未在本轮实际执行。依赖和原生库适配需在目标平台验证，不声称所有系统已支持。
 

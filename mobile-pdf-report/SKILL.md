@@ -2,13 +2,18 @@
 name: mobile-pdf-report
 description: 将中文报告、纪要或分析内容排版为适合手机阅读的窄幅 PDF，支持 Markdown、HTML 和指定目录内的本地图片及样式。用户需要可选择文字的手机阅读 PDF 时使用。
 license: MIT
+compatibility: Requires Python 3.10+, WeasyPrint 70.0 Python API, Pango >=1.44, pypdf >=6.10,<7 and CJK fonts. Windows 11 x64 dependency-probed; Linux unverified; macOS experimental.
 metadata:
-  version: "1.0.4"
+  version: "1.0.5"
 ---
 
 # 适合手机阅读的 PDF 生成器
 
 默认 105 × 180 mm，宽度允许 100–110 mm。优先语义 HTML，保留文字，不将整页转成截图。本版按已披露的验证限制发布：尚未完成真实隔离渲染及跨平台端到端验收，不能向用户宣称已通过生产验证。
+
+## 平台与依赖
+
+面向 Windows 11 x64、Linux 和实验性 macOS 配置，并非 Linux 专用；完整平台状态见 [README](README.md#系统环境与平台状态)。手机是 PDF 阅读端，不是生成器运行端。仅 Windows 的依赖加载已验证，所有平台的真实渲染仍未验收。先识别主机系统、架构和可执行的 Python 环境，不能把上游 WeasyPrint 的支持范围等同于本 Skill 已验证范围。
 
 ## 输入与安全
 

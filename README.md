@@ -45,7 +45,7 @@
 
 ### 文档生成
 
-- **[适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md)** — 将 Markdown/HTML 排版为窄幅 PDF，支持受限本地素材；真实隔离渲染尚未验收，使用前请阅读验证限制。 `v1.0.4`
+- **[适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md)** — 将 Markdown/HTML 排版为窄幅 PDF，支持受限本地素材；真实隔离渲染尚未验收，使用前请阅读验证限制。 `v1.0.5`
 
 ### 日常管理
 

@@ -27,7 +27,7 @@ class RenderErrors(logging.Handler):
 
 def render_worker(document, expected, assets_dir, width, height, target, results):
     # Defense in depth, not an OS sandbox. Caller must isolate untrusted rendering.
-    keep = {"PATH", "SYSTEMROOT", "WINDIR", "TEMP", "TMP", "LANG", "LC_ALL", "FONTCONFIG_PATH", "WEASYPRINT_DLL_DIRECTORIES"}
+    keep = {"PATH", "SYSTEMROOT", "WINDIR", "TEMP", "TMP", "LANG", "LC_ALL", "FONTCONFIG_PATH", "FONTCONFIG_FILE", "WEASYPRINT_DLL_DIRECTORIES", "DYLD_FALLBACK_LIBRARY_PATH"}
     clean = {k: v for k, v in os.environ.items() if k.upper() in keep}
     os.environ.clear()
     os.environ.update(clean)
