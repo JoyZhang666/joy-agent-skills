@@ -8,7 +8,7 @@
 |---|---|
 | 一个有权处理的 YouTube 视频链接，以及本地保存目录。 | 按来源顺序保存的 Markdown 全文稿草稿，附来源与待核对标识；中断结果不能当作完整交付。 |
 
-**先准备：**先尝试已有字幕路线（无转写 API Key）；需要云转写时再选择 Groq 或 Gemini，并确认内容处理与费用。
+**先准备**：先尝试已有字幕路线（无转写 API Key）；需要云转写时再选择 Groq 或 Gemini，并确认内容处理与费用。
 
 [第一次使用 Skill](../docs/start-here.md) · [新手 API 与首次使用指南](references/setup.zh-CN.md) · [返回全部作品](../README.md)
 

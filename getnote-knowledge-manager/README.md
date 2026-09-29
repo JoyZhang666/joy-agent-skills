@@ -8,7 +8,7 @@
 |---|---|
 | 近期 Get 笔记的时间范围、目标知识库与分类规则。 | 分类建议；在有效授权下归档，并逐条记录实际知识库 ID 的核验结果。 |
 
-**先准备：**Python 3.10+、Get 官方 API、用户自己的 API Key 与 Client ID，以及相应读写权限。
+**先准备**：Python 3.10+、Get 官方 API、用户自己的 API Key 与 Client ID，以及相应读写权限。
 
 [第一次使用 Skill](../docs/start-here.md) · [配置与授权流程](SKILL.md) · [返回全部作品](../README.md)
 

@@ -8,7 +8,7 @@
 |---|---|
 | 获授权管理的 Linux 环境、私有订阅或节点配置，以及本次操作范围。 | 安装检查、配置与排障记录、回滚指引；实际变更按授权执行和核验。 |
 
-**先准备：**自备有效节点/订阅及上游 mihomo 程序；本项目不提供 VPN 或节点服务。
+**先准备**：自备有效节点/订阅及上游 mihomo 程序；本项目不提供 VPN 或节点服务。
 
 [第一次使用 Skill](../docs/start-here.md) · [安装与授权流程](references/server-vpn-authorization-workflow.md) · [返回全部作品](../README.md)
 
