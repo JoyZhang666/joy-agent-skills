@@ -1,5 +1,5 @@
 {
-  "workflow_id": "kb-to-wechat-article-4.14.0",
+  "workflow_id": "kb-to-wechat-article-4.14.1",
   "name": "公众号写作流程索引",
   "architecture": "Harness + Graph + Loop",
   "global_state_dir": "output/_system/",

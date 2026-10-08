@@ -3,7 +3,7 @@ name: kb-to-wechat-article
 description: 将用户授权的笔记、文件或想法整理为微信公众号文章，支持首次使用引导、可选知识库连接、提纲、写作、事实与表达检查，以及按需排版和草稿箱回环。适用于写公众号、从知识库写文章、修改草稿或安装后试用；外发和定时任务按用户明确授权执行。
 license: MIT
 metadata:
-  version: "4.14.0"
+  version: "4.14.1"
   author: JoyZhang666
 ---
 
