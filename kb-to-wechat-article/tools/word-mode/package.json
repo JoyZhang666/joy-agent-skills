@@ -1,0 +1,17 @@
+{
+  "name": "kb-to-wechat-word-tools",
+  "version": "4.15.0",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@wenyan-md/core": "3.0.12",
+    "jsdom": "27.4.0",
+    "playwright-core": "1.62.1"
+  },
+  "overrides": {
+    "@xmldom/xmldom": "0.9.12"
+  }
+}

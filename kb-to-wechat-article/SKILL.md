@@ -3,7 +3,7 @@ name: kb-to-wechat-article
 description: 将用户授权的笔记、文件或想法整理为微信公众号文章，支持首次使用引导、可选知识库连接、提纲、写作、事实与表达检查，以及按需排版和草稿箱回环。适用于写公众号、从知识库写文章、修改草稿或安装后试用；外发和定时任务按用户明确授权执行。
 license: MIT
 metadata:
-  version: "4.14.1"
+  version: "4.15.0"
   author: JoyZhang666
 ---
 
@@ -38,11 +38,11 @@ metadata:
 - 封面以约 2.35:1、1200×510 为设计起点，实际查看文字、裁切和遮挡。正文流程图优先竖向、手机可读；用约 390px 显示宽度目检，未查看不能说通过。
 - 图片经用户确认后记 `cover_confirmed` 及对应版本。排版按 [主题流程](references/theme-pipeline.md)，优先展示至多三款真实预览；不足三款如实说明，不伪造主题或预览。确认后记 `theme_confirmed`、`selected_theme` 及当前产物版本。
 - 变更只失效受影响的确认；确认字段不可由超时、工具成功或助手推断填成 true。
-- Word 原文排版和多图贴图有独立限制；不得交给仅支持普通单图的更新器。贴图风格参考 [短文与表情符](references/xiaohongshu-style.md)。
+- Word 先读 [Word 模式](references/word-layout-mode.md) 和 [依赖地图](references/dependency-map.md)。普通稿可保留支持范围内的可编辑内容；表格、公式、修订或分栏不支持时，必须按 [补救指南](references/word-fidelity.md) 给出具体步骤，征得用户选择后走本机 PDF 整页图片路线。不得只报错、擅自接受修订、裁页或把图片替代说成无损。Word 多图使用人工后台交接，不交给普通单图更新器。贴图风格参考 [短文与表情符](references/xiaohongshu-style.md)。
 
 ## 可选：草稿箱、回环和反馈
 
-操作前读 [推送指南](references/push-governance.md)。明确本次账号、文章和外发范围；使用守卫入口，质量检查不等于用户批准。成功取得草稿标识即保存收据；网络中断、返回结果不明时先核实后台，不自动重发。基础回验与完整视觉核验分开报告，不声称脚本退出 0 证明图片身份或排版无误。
+先分流：人工后台交稿（含 Word 多图）按 [人工入草稿箱](references/word-fidelity.md#把页面图片放进公众号草稿箱)，不要求 AppSecret、API 权限或固定 IP；普通单图自动接口才读 [推送指南](references/push-governance.md)。明确账号、文章和外发范围，质量检查不等于用户批准。自动接口使用守卫，取得草稿标识即保存收据；结果不明先查后台，不重发。基础回验与完整视觉核验分开报告，不把退出 0 当作图片身份或排版验收。
 
 用户在后台修改过时，按 [回环协议](references/draft-loop-protocol.md) 先拉回、保存基线，再最小修改；版本冲突、未知基线或多图超出能力时停止写入，保留本地稿。
 

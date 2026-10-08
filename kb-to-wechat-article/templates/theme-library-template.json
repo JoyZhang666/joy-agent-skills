@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "themes": [],
+  "instructions": "在私人工作目录记录实际 theme_id、状态 pending/active/rejected、预览和用户确认依据；未验收不能 active。本模板不提供 CSS。"
+}

@@ -1,0 +1,3 @@
+# Optional offline PDF visual fallback; versions verified in local synthetic tests.
+pypdfium2==5.13.0
+Pillow==12.3.0

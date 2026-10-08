@@ -9,3 +9,5 @@ __pycache__/
 *.pyc
 .venv/
 *.log
+node_modules/
+.npm/

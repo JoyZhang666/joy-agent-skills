@@ -32,6 +32,9 @@ SOFTWARE.
 
 ## 可选外部工具
 
+- Word 工具按锁文件安装 [@wenyan-md/core](https://github.com/caol64/wenyan-core) 3.0.12（Apache-2.0）、[jsdom](https://github.com/jsdom/jsdom) 27.4.0（MIT）、[playwright-core](https://github.com/microsoft/playwright) 1.62.1（Apache-2.0）。只交付调用代码与依赖清单，不打包其源码、主题或 node_modules；运行时生成的主题样式仍受相应许可约束。安装包中的上游 LICENSE/NOTICE 应保留。
+- PDF 页图使用 [pypdfium2](https://github.com/pypdfium2-team/pypdfium2) 5.13.0（包装层 Apache-2.0 / BSD-3-Clause，PDFium 及依赖另有许可）与 [Pillow](https://github.com/python-pillow/Pillow) 12.3.0（MIT-CMU/HPND 等，详见其 LICENSE）。本包不分发其二进制；重新打包运行环境时须保留全部第三方许可。
+- 锁定的传递依赖 @xmldom/xmldom 覆盖为 0.9.12，避免使用安装时已声明安全缺陷的 0.9.10；参见 [上游变更记录](https://github.com/xmldom/xmldom/blob/master/CHANGELOG.md)。这不是全部依赖永远无漏洞的保证。
 - [文颜 CLI](https://github.com/caol64/wenyan-cli)：排版与公众号草稿接口，Apache-2.0；本包不包含其代码或主题。接口文档核对时上游 package.json 为 2.0.12；不代表本包已完成该版本真实微信联调。
 - [得到大脑](https://www.biji.com/)：可选用户素材来源；不包含其客户端、凭据或用户笔记。命令以官方 CLI 当前帮助为准。
 - [Codex Skills](https://developers.openai.com/codex/skills/) / [OpenClaw Skills](https://docs.openclaw.ai/tools/skills)：安装位置参考，宿主配置不同须现场确认。
