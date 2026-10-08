@@ -1,0 +1,45 @@
+{
+  "graph_id": "repurpose",
+  "name": "复盘再创作 Graph",
+  "goal": "基于历史文章表现和旧内容资产，重构更高表现的新文章或系列内容",
+  "nodes": [
+    {
+      "node_id": "history_scan",
+      "type": "research",
+      "exit_condition": "找到历史表现、原文、复盘结论"
+    },
+    {
+      "node_id": "asset_selection",
+      "type": "loop",
+      "max_iterations": 2,
+      "exit_condition": "选择有二创价值的主题或失败但可修复的主题"
+    },
+    {
+      "node_id": "new_angle",
+      "type": "loop",
+      "max_iterations": 3,
+      "exit_condition": "新角度不重复旧文且有明确读者收益"
+    },
+    {
+      "node_id": "rewrite_plan",
+      "type": "transform",
+      "exit_condition": "明确保留、删除、重写、补充的内容块"
+    },
+    {
+      "node_id": "repurpose_draft",
+      "type": "write",
+      "quality_gate": "fact_source"
+    },
+    {
+      "node_id": "comparison_review",
+      "type": "loop",
+      "max_iterations": 2,
+      "exit_condition": "相比旧文标题/结构/读者价值更强"
+    },
+    {
+      "node_id": "local_delivery",
+      "type": "handoff",
+      "exit_condition": "Deliver local draft and source notes, or chat output when files unavailable; optional publishing requires user authorization"
+    }
+  ]
+}

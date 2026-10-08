@@ -1,0 +1,47 @@
+{
+  "workflow_id": "kb-to-wechat-feedback-graph-v3",
+  "name": "可选文章反馈流程",
+  "description": "用户选择复盘后读取真实单篇数据，缺失留空；不自动创建定时任务",
+  "nodes": [
+    {
+      "node_id": "detect_published_article",
+      "type": "check",
+      "exit_condition": "User requested analysis and actual public publication is confirmed; otherwise stop"
+    },
+    {
+      "node_id": "fetch_wechat_metrics",
+      "type": "loop",
+      "max_iterations": 1,
+      "actions": [
+        "read_credentials",
+        "get_access_token",
+        "call_available_wechat_data_api"
+      ],
+      "exit_condition": "Matched article metrics saved, or explicit blocker recorded; no automatic retry of permissions or authentication"
+    },
+    {
+      "node_id": "normalize_metrics",
+      "type": "transform",
+      "exit_condition": "metrics-normalized.json written with null for unavailable fields"
+    },
+    {
+      "node_id": "analyze_performance",
+      "type": "loop",
+      "max_iterations": 2,
+      "quality_check": "analysis covers topic/title/cover/content/next actions and does not overclaim with small samples"
+    },
+    {
+      "node_id": "update_memory",
+      "type": "write",
+      "targets": [
+        "topic-scoreboard.json",
+        "headline-patterns.md",
+        "cover-memory.md",
+        "feedback-memory.md",
+        "content-ledger.json"
+      ],
+      "scope": "Private user working directory only, optional manual synthesis, not automatic code output"
+    }
+  ],
+  "requires_user_opt_in": true
+}

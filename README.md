@@ -43,6 +43,10 @@
 - **[全书精读工作流](full-book-deep-reading-workflow/README.md)** — 有原文定位的逐章笔记、阅读进度和范围明确的综述，可接续上次阅读。 `v2.0.1`
 - **[GetNote 知识库整理](getnote-knowledge-manager/README.md)** — 分类建议；在有效授权下归档，并逐条记录实际知识库 ID 的核验结果。 `v2.0.0`
 
+### 内容创作
+
+- **[微信公众号写作助手](kb-to-wechat-article/README.md)** — 从笔记、资料和想法写出有依据的文章；新手逐步引导，知识库可跳过，按需配图与送草稿箱。 `v4.14.0`
+
 ### 文档生成
 
 - **[适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md)** — 将 Markdown/HTML 排版为窄幅 PDF，支持受限本地素材；真实隔离渲染尚未验收，使用前请阅读验证限制。 `v1.0.5`
@@ -76,3 +80,4 @@ Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://gi
 ## 隐私
 
 本仓库仅收录通用说明、脚本和空白模板。真实会议、个人配置、客户资料、登录凭据和运行日志不纳入仓库。上传前逐项检查文件；网页上传也需要人工检查，不能依赖 .gitignore 自动阻止敏感文件上传。
+

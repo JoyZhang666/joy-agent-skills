@@ -1,0 +1,24 @@
+{
+  "workflow_id": "kb-to-wechat-article-loop-v3",
+  "article_id": "",
+  "graph_type": null,
+  "current_node": "harness_start",
+  "nodes": [],
+  "feedback": {
+    "collection": "opt_in",
+    "status": "disabled",
+    "schedule": [],
+    "blockers": []
+  },
+  "topic_confirmed": false,
+  "outline_confirmed": false,
+  "article_finalized": false,
+  "humanizer_passed": false,
+  "quality_gate_passed": false,
+  "cover_confirmed": false,
+  "theme_confirmed": false,
+  "selected_theme": null,
+  "delivery_mode": "local_draft",
+  "upload_confirmed": false,
+  "confirmed_artifacts": {}
+}

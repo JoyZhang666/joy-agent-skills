@@ -1,0 +1,4 @@
+# Optional advanced image checks and HTML quality gate only.
+# Basic agent-assisted writing requires no Python packages.
+Pillow>=10.4.0
+lxml>=5.3.0

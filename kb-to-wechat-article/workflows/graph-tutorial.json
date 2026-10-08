@@ -1,0 +1,44 @@
+{
+  "graph_id": "tutorial",
+  "name": "教程实操 Graph",
+  "goal": "生成可复现、坑点清楚、适合非专业读者上手的教程文章",
+  "nodes": [
+    {
+      "node_id": "user_goal_parse",
+      "type": "check",
+      "exit_condition": "目标读者、环境、成功标准明确"
+    },
+    {
+      "node_id": "step_plan",
+      "type": "loop",
+      "max_iterations": 2,
+      "exit_condition": "步骤完整且顺序可执行"
+    },
+    {
+      "node_id": "command_verify",
+      "type": "verification",
+      "exit_condition": "命令/配置经过最小可行验证或明确标注未验证"
+    },
+    {
+      "node_id": "pitfall_append",
+      "type": "loop",
+      "max_iterations": 2,
+      "exit_condition": "每个关键步骤至少有常见坑或判断标准"
+    },
+    {
+      "node_id": "tutorial_draft",
+      "type": "write",
+      "quality_gate": "reader_friendly"
+    },
+    {
+      "node_id": "final_checklist",
+      "type": "transform",
+      "exit_condition": "包含操作清单、验收标准、故障排查"
+    },
+    {
+      "node_id": "local_delivery",
+      "type": "handoff",
+      "exit_condition": "Deliver local draft and source notes, or chat output when files unavailable; optional publishing requires user authorization"
+    }
+  ]
+}

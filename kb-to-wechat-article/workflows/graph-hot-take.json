@@ -1,0 +1,41 @@
+{
+  "graph_id": "hot_take",
+  "name": "热点快评 Graph",
+  "goal": "在窗口期内快速完成观点明确、风险可控的热点文章",
+  "nodes": [
+    {
+      "node_id": "hotspot_detect",
+      "type": "research",
+      "loop": true,
+      "exit_condition": "至少2条可信来源且时效性明确"
+    },
+    {
+      "node_id": "angle_selection",
+      "type": "loop",
+      "max_iterations": 3,
+      "exit_condition": "观点具体、非泛泛复述、适合公众号读者"
+    },
+    {
+      "node_id": "rapid_outline",
+      "type": "loop",
+      "max_iterations": 2,
+      "exit_condition": "开头钩子+3个核心段落+自然结尾"
+    },
+    {
+      "node_id": "fast_draft",
+      "type": "write",
+      "quality_gate": "fact_source"
+    },
+    {
+      "node_id": "headline_ab",
+      "type": "loop",
+      "max_iterations": 3,
+      "exit_condition": "至少3个高分标题且不标题党"
+    },
+    {
+      "node_id": "local_delivery",
+      "type": "handoff",
+      "exit_condition": "Deliver local draft and source notes, or chat output when files unavailable; optional publishing requires user authorization"
+    }
+  ]
+}

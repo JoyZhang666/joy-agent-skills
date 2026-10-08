@@ -1,0 +1,46 @@
+{
+  "graph_id": "deep_article",
+  "name": "深度长文 Graph",
+  "goal": "把知识库材料转化为结构完整、观点扎实、适合收藏的深度公众号文章",
+  "nodes": [
+    {
+      "node_id": "knowledge_retrieval",
+      "type": "research",
+      "loop": true,
+      "exit_condition": "素材覆盖核心问题且涉密项已排除"
+    },
+    {
+      "node_id": "evidence_map",
+      "type": "transform",
+      "exit_condition": "关键事实均有来源线索"
+    },
+    {
+      "node_id": "insight_modeling",
+      "type": "loop",
+      "max_iterations": 3,
+      "exit_condition": "形成一个主论点和3-5个支撑论点"
+    },
+    {
+      "node_id": "structure_design",
+      "type": "loop",
+      "max_iterations": 3,
+      "exit_condition": "逻辑递进清晰、开头抓人、结尾有行动建议"
+    },
+    {
+      "node_id": "longform_draft",
+      "type": "write",
+      "quality_gate": "humanizer"
+    },
+    {
+      "node_id": "review_and_rewrite",
+      "type": "loop",
+      "max_iterations": 3,
+      "exit_condition": "事实、结构、可读性、AI味均通过"
+    },
+    {
+      "node_id": "local_delivery",
+      "type": "handoff",
+      "exit_condition": "Deliver local draft and source notes, or chat output when files unavailable; optional publishing requires user authorization"
+    }
+  ]
+}

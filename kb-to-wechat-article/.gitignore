@@ -1,0 +1,11 @@
+# User writing and credentials belong outside the skill directory.
+output/
+.env
+.env.*
+*.pem
+*.key
+token.json
+__pycache__/
+*.pyc
+.venv/
+*.log

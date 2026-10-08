@@ -1,0 +1,46 @@
+{
+  "workflow_id": "kb-to-wechat-article-4.14.0",
+  "name": "公众号写作流程索引",
+  "architecture": "Harness + Graph + Loop",
+  "global_state_dir": "output/_system/",
+  "graphs": [
+    "hot_take",
+    "deep_article",
+    "tutorial",
+    "repurpose",
+    "feedback"
+  ],
+  "quality_gates": [
+    "humanizer",
+    "fact_source"
+  ],
+  "feedback": {
+    "mode": "opt_in",
+    "preferred_source": "wechat_official_api",
+    "fallback": "leave_unknown_or_user_provided_data"
+  },
+  "runtime_tools": [
+    "tools/wechat_metrics_fetcher.py",
+    "tools/feedback_scheduler.py",
+    "tools/feedback_analyzer.py"
+  ],
+  "prompt_roles": [
+    "topic-editor",
+    "researcher",
+    "structurer",
+    "writer",
+    "reviewer",
+    "cover-director",
+    "layout-editor",
+    "publisher",
+    "analyst"
+  ],
+  "execution": "instructional_graph_not_runtime",
+  "onboarding": "references/getting-started.md",
+  "optional_quality_gates": [
+    "cover_gate_a",
+    "theme_gate_b",
+    "publish_precheck"
+  ],
+  "path_base": "runtime paths relative to user working folder; bundled tools/prompts/onboarding relative to Skill folder"
+}

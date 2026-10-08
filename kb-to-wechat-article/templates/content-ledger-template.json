@@ -1,0 +1,28 @@
+{
+  "schema_version": "3.0",
+  "articles": [
+    {
+      "article_id": "",
+      "slug": "",
+      "title": "",
+      "graph_type": "deep_article",
+      "status": "local_draft",
+      "source_notes": [],
+      "output_dir": "",
+      "selected_theme": "",
+      "wechat_media_id": "",
+      "public_url": "",
+      "publish_time": null,
+      "quality_scores": {},
+      "feedback": {
+        "collection": "opt_in",
+        "status": "disabled",
+        "next_due_at": null,
+        "last_collected_at": null,
+        "metrics_file": null,
+        "analysis_file": null
+      },
+      "lessons": []
+    }
+  ]
+}
