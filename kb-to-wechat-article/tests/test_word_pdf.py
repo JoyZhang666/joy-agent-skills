@@ -17,7 +17,7 @@ sys.path.insert(0,str(ROOT/'tools/word-mode'))
 SPEC=importlib.util.spec_from_file_location('word_pdf_pages',ROOT/'tools/word-mode/pdf-pages.py')
 pdf=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(pdf)
 
-def synthetic_pdf(pages=2,width=300,height=400):
+def synthetic_pdf(pages=2,width=110*72/25.4,height=400,font=18):
     """Minimal complete PDF with selectable text, a vector table and RGB image."""
     objects=[b'<< /Type /Catalog /Pages 2 0 R >>',b'',b'<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>']
     pixels=bytes([255,0,0,0,128,255,0,180,0,255,200,0]);image=zlib.compress(pixels)
@@ -34,6 +34,8 @@ def synthetic_pdf(pages=2,width=300,height=400):
                  'BT /F1 12 Tf 35 225 Td (Beta) Tj 130 0 Td (20) Tj ET\n'
                  'q 100 0 0 100 25 80 cm /Im1 Do Q\n'
                  'BT /F1 10 Tf 25 40 Td (No real personal information) Tj ET').encode()
+        import re
+        content=re.sub(rb'/F1 \d+ Tf',('/F1 '+str(font)+' Tf').encode(),content)
         objects.append(b'<< /Length '+str(len(content)).encode()+b' >>\nstream\n'+content+b'\nendstream')
     objects[1]=('<< /Type /Pages /Count '+str(pages)+' /Kids ['+' '.join(kids)+'] >>').encode()
     output=bytearray(b'%PDF-1.4\n');offsets=[0]
@@ -56,7 +58,7 @@ class PDFPagesTests(unittest.TestCase):
         from PIL import Image,ImageStat
         import pypdfium2
         dest=self.d/'article';before=self.source.read_bytes()
-        result=pdf.convert(self.source,dest,True)
+        result=pdf.convert(self.source,dest,True,dpi=144)
         self.assertEqual(result['status'],'complete');self.assertEqual(result['page_count'],2)
         self.assertEqual(result['source_sha256'],pdf.sha(before));self.assertFalse(result['uploaded'])
         self.assertEqual(self.source.read_bytes(),before);self.assertEqual((dest/'source.pdf').read_bytes(),before)
@@ -68,7 +70,7 @@ class PDFPagesTests(unittest.TestCase):
             self.assertEqual(item['page'],i);self.assertEqual(item['file'],f'pages/page-{i:04d}.png')
             path=dest/item['file'];self.assertEqual(item['sha256'],pdf.sha(path.read_bytes()))
             with Image.open(path) as image:
-                self.assertEqual(image.size,(600,800));self.assertGreater(max(ImageStat.Stat(image).stddev),10)
+                self.assertEqual(image.size,(624,800));self.assertGreater(max(ImageStat.Stat(image).stddev),10)
                 # Embedded square has red and blue quadrants, not merely a blank bitmap.
                 self.assertGreater(image.getpixel((75,465))[0],200)
                 self.assertGreater(image.getpixel((175,465))[2],200)
@@ -78,6 +80,43 @@ class PDFPagesTests(unittest.TestCase):
     def test_confirmation_required(self):
         with self.assertRaises(pdf.Unsupported):pdf.convert(self.source,self.d/'article')
         self.assertFalse((self.d/'article').exists())
+    def test_default_dpi_and_all_mobile_previews(self):
+        from PIL import Image
+        result=pdf.convert(self.source,self.d/'article',True)
+        self.assertEqual(result['dpi'],200)
+        self.assertEqual(len(result['preview_images']),6)
+        for preview in result['preview_images']:
+            with Image.open(self.d/'article'/preview['file']) as image:self.assertEqual(image.width,preview['viewport'])
+        self.assertFalse(result['mobile_readability_verified'])
+        self.assertTrue((self.d/'article'/'preview.html').is_file())
+    def test_a4_width_rejected_before_writing(self):
+        self.source.write_bytes(synthetic_pdf(width=210*72/25.4))
+        with self.assertRaisesRegex(pdf.Unsupported,'110 mm'):pdf.convert(self.source,self.d/'article',True)
+        self.assertFalse((self.d/'article').exists())
+    def test_small_text_flag_and_nonzero_cli(self):
+        self.source.write_bytes(synthetic_pdf(font=10))
+        output=io.StringIO()
+        with patch.object(sys,'argv',['test','--input',str(self.source),'--article-dir',str(self.d/'article'),'--confirm-local-export']),contextlib.redirect_stdout(output):self.assertEqual(pdf.main(),2)
+        report=json.loads((self.d/'article'/'mobile-check.json').read_text())
+        self.assertEqual(report['status'],'needs_review')
+        self.assertGreater(report['pages'][0]['small_characters'],0)
+        self.assertNotIn('Synthetic page',json.dumps(report))
+    def test_image_only_and_rotated_pages_not_silently_passed(self):
+        import pypdfium2
+        with patch.object(pypdfium2.PdfTextPage,'count_chars',return_value=0):
+            result=pdf.convert(self.source,self.d/'image-only',True)
+            self.assertEqual(result['mobile_check']['status'],'needs_review')
+        with patch.object(pypdfium2.PdfPage,'get_rotation',return_value=90),self.assertRaises(pdf.Unsupported):pdf.convert(self.source,self.d/'rotated',True)
+    def test_font_scaling_matrix_is_checked(self):
+        import pypdfium2
+        def matrix(_,__,ptr):
+            ptr._obj.a=0.5;ptr._obj.d=0.5;return 1
+        with patch.object(pypdfium2.raw,'FPDFText_GetMatrix',side_effect=matrix):
+            result=pdf.convert(self.source,self.d/'scaled',True)
+            self.assertGreater(result['mobile_check']['pages'][0]['small_characters'],0)
+    def test_measurement_work_is_bounded(self):
+        with patch.object(pdf,'MAX_TEXT_CHARS',1),self.assertRaises(pdf.Unsupported):pdf.convert(self.source,self.d/'too-many',True)
+        self.assertFalse((self.d/'too-many').exists())
     def test_output_no_overwrite(self):
         dest=self.d/'article';dest.mkdir();(dest/'keep').write_text('keep')
         with self.assertRaises(pdf.Unsupported):pdf.convert(self.source,dest,True)

@@ -3,7 +3,7 @@ name: kb-to-wechat-article
 description: 将用户授权的笔记、文件或想法整理为微信公众号文章，支持首次使用引导、可选知识库连接、提纲、写作、事实与表达检查，以及按需排版和草稿箱回环。适用于写公众号、从知识库写文章、修改草稿或安装后试用；外发和定时任务按用户明确授权执行。
 license: MIT
 metadata:
-  version: "4.15.0"
+  version: "4.16.0"
   author: JoyZhang666
 ---
 
@@ -38,7 +38,7 @@ metadata:
 - 封面以约 2.35:1、1200×510 为设计起点，实际查看文字、裁切和遮挡。正文流程图优先竖向、手机可读；用约 390px 显示宽度目检，未查看不能说通过。
 - 图片经用户确认后记 `cover_confirmed` 及对应版本。排版按 [主题流程](references/theme-pipeline.md)，优先展示至多三款真实预览；不足三款如实说明，不伪造主题或预览。确认后记 `theme_confirmed`、`selected_theme` 及当前产物版本。
 - 变更只失效受影响的确认；确认字段不可由超时、工具成功或助手推断填成 true。
-- Word 先读 [Word 模式](references/word-layout-mode.md) 和 [依赖地图](references/dependency-map.md)。普通稿可保留支持范围内的可编辑内容；表格、公式、修订或分栏不支持时，必须按 [补救指南](references/word-fidelity.md) 给出具体步骤，征得用户选择后走本机 PDF 整页图片路线。不得只报错、擅自接受修订、裁页或把图片替代说成无损。Word 多图使用人工后台交接，不交给普通单图更新器。贴图风格参考 [短文与表情符](references/xiaohongshu-style.md)。
+- Word 先读 [Word 模式](references/word-layout-mode.md) 和 [依赖地图](references/dependency-map.md)。普通稿可保留支持范围内的可编辑内容；表格、公式、修订或分栏不支持时，必须按 [补救指南](references/word-fidelity.md) 给出具体步骤，征得用户选择后走本机 PDF 整页图片路线：先在独立副本中设为 110 mm、左右各 5 mm、正文 18 磅、1.5 倍行距，核对重排后导出；不要缩小现成 A4 PDF。运行 mobile-copy.py 和 pdf-pages.py 的条件、人工替代及验收见补救指南。程序 complete 仅表示文件生成完成，mobile-check 通过及逐页/手机目检分别记录。不得只报错、擅自接受修订、裁页或把图片替代说成无损。Word 多图使用人工后台交接，不交给普通单图更新器。贴图风格参考 [短文与表情符](references/xiaohongshu-style.md)。
 
 ## 可选：草稿箱、回环和反馈
 

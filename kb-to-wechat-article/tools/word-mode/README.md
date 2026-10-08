@@ -31,18 +31,30 @@ node tools/word-mode/capture.cjs "private-work/article-001" original
 
 ## 复杂 Word → PDF 整页图片
 
-先按 [保真补救指南](../../references/word-fidelity.md) 确认最终视图、导出并核对 PDF；用户选择页图后才转换。不需要 Node 或文颜。
+先按 [保真补救指南](../../references/word-fidelity.md) 确认用户选择图片形式及手机版重排；保留原稿。不需要 Node 或文颜。
 
-由 AI 在用户确认的独立 Python 环境中安装固定依赖，使用该环境的 Python：
+1. 生成独立手机版副本（Python 标准库）：
+
+```powershell
+python tools/word-mode/mobile-copy.py --input "input/article.docx" --article-dir "private-work/mobile-001" --confirm-mobile-copy
+```
+
+输出 `source.docx`、`mobile.docx`、`mobile-layout.json`。所有节宽 110 mm、左右各 5 mm、正文至少 18 磅、1.5 倍行距、单栏。显式大字号不缩小；继承的标题字号可能改变，必须核对。表格宽度偏好按页面调整，行高允许增长，但不保证复杂表格自动排好；浮动图、公式、页眉页脚/脚注及分页须核对。其他包内资源逐字节保留。不接受修订、不运行 Word、不改原件。宏/外部关系等不支持时按补救指南手动另存副本，不能关闭保护。
+
+2. AI 展示副本的实际位置，带用户在 Word/WPS/LibreOffice 中打开、检查后导出 `mobile.pdf`；不同编辑器可能重排。不要直接缩放原 A4 PDF。
+3. 选用 PDF 功能时，在用户确认的独立 Python 环境中准备固定依赖，再运行：
 
 ```powershell
 python -m pip install -r tools/word-mode/requirements-pdf.txt
-python tools/word-mode/pdf-pages.py --input "input/article.pdf" --article-dir "private-work/article-pages-001" --confirm-local-export
+python tools/word-mode/pdf-pages.py --input "private-work/mobile-001/mobile.pdf" --article-dir "private-work/article-pages-001" --confirm-local-export
 ```
 
-确认参数代表用户已确认来源与页面，不是程序证明 PDF 来自 Word。输出 source.pdf、`pages/page-0001.png` 等整页图、article.html、manifest.json。只有 `status=complete` 才生成完成；失败留下 incomplete，不能上传。
+确认参数表示用户已确认来源与页面，不是程序证明 PDF 来自 Word。生成 `source.pdf`、`pages/page-0001.png` 等页图、`article.html`、`preview.html`、`previews/` 中三种宽度的逐页 PNG，以及 `mobile-check.json` / `manifest.json`。输出目录必须全新。
 
-默认 144 DPI（72–200），最多 30 MiB、30 页、单边 8192 像素、单页 1600 万像素、合计 1 亿像素。拒绝加密/交互表单。超限回编辑器分章导出并保留页码，不丢页或静默降质。页图不是无损 Word；手机字太小就调整 Word 手机版字号/页面宽度再导出。
+默认 **200 DPI**（可选72–200），每页宽必须 **110 mm ±1 mm** 且无页面旋转；A4 输入在写文件前拒绝。最多 30 MiB、30 页、单边8192像素、单页1600万像素、合计1亿像素、20万可提取字符；拒绝加密及交互表单。超限按章节拆分并保留衔接，不丢页、强制缩放或静默降质。
+
+`complete` 仅指文件生成完成。自动估算 320 像素视口（图像实宽288）下可提取文字的显示字号；低于16像素、边缘文字或无法测量时报告 `needs_review`，CLI 返回2并保留预览供排错。图像/轮廓内文字、重叠、公式细节须逐页目检；没有报告不等于这些内容通过。`checks_passed` 也不等于用户验收。查看320/390/430全部预览后，再由用户决定微信手机预览与交稿；纯图片页可单独记录实际目检结论，不改自动报告。
+
 
 ## 入草稿箱与边界
 

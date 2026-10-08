@@ -54,7 +54,7 @@ def xml(data):
     try:return ET.fromstring(data)
     except ET.ParseError:raise Unsupported('XML 无法解析') from None
 
-def package(blob):
+def package(blob, additional_relationships=(), normalize_internal_targets=False):
     import io
     if len(blob)>MAX_ARCHIVE:raise Unsupported('DOCX 超过 30 MiB')
     try:
@@ -96,6 +96,7 @@ def package(blob):
         raise Unsupported('只支持标准无宏 DOCX 正文')
     rels={}
     allowed={'officeDocument','core-properties','extended-properties','custom-properties','styles','settings','fontTable','theme','webSettings','image','numbering'}
+    allowed.update(additional_relationships)
     for name,tree in parsed.items():
         if not name.endswith('.rels'):continue
         if tree.tag!=q(REL,'Relationships'):raise Unsupported('无效关系清单')
@@ -105,13 +106,17 @@ def package(blob):
             if node.tag!=q(REL,'Relationship'):raise Unsupported('未知关系节点')
             if node.get('TargetMode','Internal')!='Internal':raise Unsupported('拒绝外部关系')
             relationship_type=node.get('Type','')
-            if not relationship_type.startswith((R+'/',REL+'/metadata/')):reject('不支持的关系命名空间')
+            effect_style=('stylesWithEffects' in additional_relationships and relationship_type=='http://schemas.microsoft.com/office/2007/relationships/stylesWithEffects')
+            if not relationship_type.startswith((R+'/',REL+'/metadata/')) and not effect_style:reject('不支持的关系命名空间')
             kind=relationship_type.rsplit('/',1)[-1]
             if kind not in allowed:reject('不支持的文档关系')
             target=node.get('Target','')
-            if not target or target.startswith('/') or ':' in target or '\\' in target or '%' in target or '?' in target or '#' in target or '..' in target.split('/'):
+            if not target or target.startswith('/') or ':' in target or '\\' in target or '%' in target or '?' in target or '#' in target or (not normalize_internal_targets and '..' in target.split('/')):
                 raise Unsupported('关系目标不安全')
-            target=member_name(source+target)
+            if normalize_internal_targets:
+                import posixpath
+                target=member_name(posixpath.normpath(source+target))
+            else:target=member_name(source+target)
             if target not in parts:raise Unsupported('关系目标不存在')
             rid=node.get('Id','')
             if not rid or rid in ids:raise Unsupported('关系 ID 缺失或重复')
