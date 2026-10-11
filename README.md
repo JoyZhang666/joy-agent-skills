@@ -17,7 +17,9 @@
 
 从选角度到写初稿、检查事实，带新手一步步完成第一篇。**基础写作无需知识库账号或公众号密钥**；送草稿箱需配置接口并获授权，最终公开发表由你完成。已有 Word 定稿也可按指南转换并检查手机预览，转换限制见项目说明。
 
-[了解并开始 →](kb-to-wechat-article/README.md) · [第一次使用指南](kb-to-wechat-article/references/getting-started.md)
+[了解并开始 →](kb-to-wechat-article/README.md) · [第一次使用指南](kb-to-wechat-article/references/getting-started.md) · [版本变化](kb-to-wechat-article/CHANGELOG.md)
+
+近期版本 **v4.16.0（2026-10-08）**；本地转换与公众号联调的适用条件、验证范围见项目说明。
 
 ## 更多精选作品
 
