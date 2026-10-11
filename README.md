@@ -8,7 +8,7 @@
 
 第一次接触 Skill？它是一套交给 AI Agent 阅读和执行的工作说明，有些还附带脚本和模板。先选一个具体任务，再按项目指南准备环境。
 
-## 先看这四件作品
+## 🆕 NEW / 近期更新
 
 ### [微信公众号写作助手](kb-to-wechat-article/README.md) · 重点推荐
 
@@ -18,6 +18,8 @@
 从选角度到写初稿、检查事实，带新手一步步完成第一篇。**基础写作无需知识库账号或公众号密钥**；送草稿箱需配置接口并获授权，最终公开发表由你完成。已有 Word 定稿也可按指南转换并检查手机预览，转换限制见项目说明。
 
 [了解并开始 →](kb-to-wechat-article/README.md) · [第一次使用指南](kb-to-wechat-article/references/getting-started.md)
+
+## 更多精选作品
 
 ### [Get 会议行动](getnote-meeting-actions/README.md)
 
