@@ -1,0 +1,19 @@
+{
+  "synthetic": true,
+  "sq_id": "SQ-EVIDENCE",
+  "topic": "示例材料乙是否值得初次接触",
+  "summary": {"finding": "可以进行轻量接触，尚无直接客户或海外交付证明", "gap": "主体、客户、财务与认证材料仍需索取"},
+  "data_points": [
+    {"id": "D1", "entity": "示例材料甲集团", "as_of": "2026-09-30", "field": "集团营收声明", "value": 120000000, "unit": "CNY", "period": "2025", "scope": "集团", "evidence_status": "self_reported", "source_url": "https://example.com/synthetic/parent-profile", "source_locator": "S1 第2段", "origin_id": "S1"},
+    {"id": "D2", "entity": "示例材料乙有限公司", "as_of": "2026-10-01", "field": "集团子公司关系", "value": "虚构信息卡列为集团子公司", "evidence_status": "unreviewed", "source_url": "https://example.com/synthetic/child-record", "source_locator": "S2 第2段", "origin_id": "S2"},
+    {"id": "D3", "entity": "示例材料乙有限公司", "as_of": "2026-10-01", "field": "直接 OEM 客户", "value": null, "relationship": "unknown", "evidence_status": "unknown", "source_url": "https://example.com/synthetic/child-record", "source_locator": "S2 未披露此项", "origin_id": "S2"},
+    {"id": "D4", "entity": "示例材料甲集团", "as_of": "2026-10-01", "field": "转载客户声明", "value": "宣传册声明的转载，不增加独立证据", "relationship": "self-reported", "evidence_status": "self_reported", "source_url": "https://example.com/synthetic/reprint", "source_locator": "S3 第2段", "origin_id": "S1"},
+    {"id": "D5", "entity": "示例材料丁集团", "as_of": "2025-03-01", "field": "集团营收摘要", "value": 16000000, "unit": "GBP", "period": "2024", "scope": "集团，未与乙口径对齐", "evidence_status": "unreviewed", "source_url": "https://example.com/synthetic/peer-summary", "source_locator": "S4 第2段", "origin_id": "S4"}
+  ],
+  "sources": [
+    {"url": "https://example.com/synthetic/parent-profile", "origin_id": "S1"},
+    {"url": "https://example.com/synthetic/child-record", "origin_id": "S2"},
+    {"url": "https://example.com/synthetic/reprint", "origin_id": "S1"},
+    {"url": "https://example.com/synthetic/peer-summary", "origin_id": "S4"}
+  ]
+}

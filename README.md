@@ -10,6 +10,17 @@
 
 ## 🆕 NEW / 近期更新
 
+### [横纵研究与商业尽调](hv-analysis-codex/README.md) · 新增
+
+**输入**：公司、产品或人物，以及你想解决的决策问题和有权使用的材料。  
+**交付**：有来源定位的 Markdown 分析、决策简报、证据与待核验清单；可选本地 JSON/CSV 汇总与 A4 PDF。
+
+从发展历程、同期竞争与交汇洞察走向实际决策，区分母子公司、直接/间接客户和可比口径。**基础研究无需专用 API Key 或知识库账号**；先用虚构案例上手，技术检查与事实核验分别说明。
+
+[了解并开始 →](hv-analysis-codex/README.md) · [安装与工具指南](hv-analysis-codex/references/setup.md) · [验证范围](hv-analysis-codex/VALIDATION.md)
+
+首版 **v1.0.0（2026-10-15）**，基于 KKKKhazix 的横纵分析方法改编，署名与 MIT 许可见项目目录。
+
 ### [微信公众号写作助手](kb-to-wechat-article/README.md) · 重点推荐
 
 **输入**：一个主题或一份有权使用的笔记、文字或文件，以及你想写给谁看。  
@@ -60,6 +71,10 @@
 
 - **[微信公众号写作助手](kb-to-wechat-article/README.md)** — 从笔记、资料和想法写出有依据的文章；新手逐步引导，知识库可跳过，按需配图与送草稿箱。 `v4.16.0`
 
+### 研究与决策
+
+- **[横纵研究与商业尽调](hv-analysis-codex/README.md)** — 主体核实、纵横分析、合作证据与决策简报；支持实际计划覆盖检查和可选本地 PDF。 `v1.0.0`
+
 ### 文档生成
 
 - **[适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md)** — 将 Markdown/HTML 排版为窄幅 PDF，支持受限本地素材；真实隔离渲染尚未验收，使用前请阅读验证限制。 `v1.0.5`
@@ -88,9 +103,10 @@
 
 ## 来源与许可
 
-Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://github.com/zarazhangrui/lark-minutes-tasks) 改编。改编范围及参考版本见[来源记录](getnote-meeting-actions/references/upstream.md)，原始 MIT 版权及许可全文保留于该 Skill 的 [LICENSE](getnote-meeting-actions/LICENSE)。各作品以所在目录的许可证为准。
+Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://github.com/zarazhangrui/lark-minutes-tasks) 改编。改编范围及参考版本见[来源记录](getnote-meeting-actions/references/upstream.md)，原始 MIT 版权及许可全文保留于该 Skill 的 [LICENSE](getnote-meeting-actions/LICENSE)。横纵研究与商业尽调基于 [KKKKhazix 的 hv-analysis](https://github.com/KKKKhazix/khazix-skills/tree/main/hv-analysis) 改编，改造范围、参考提交及许可见[来源说明](hv-analysis-codex/THIRD-PARTY-NOTICES.md)。各作品以所在目录的许可证为准。
 
 ## 隐私
 
-本仓库仅收录通用说明、脚本和空白模板。真实会议、个人配置、客户资料、登录凭据和运行日志不纳入仓库。上传前逐项检查文件；网页上传也需要人工检查，不能依赖 .gitignore 自动阻止敏感文件上传。
+本仓库仅收录通用说明、脚本、空白模板和虚构示例。真实会议、个人配置、客户资料、登录凭据和运行日志不纳入仓库。上传前逐项检查文件；网页上传也需要人工检查，不能依赖 .gitignore 自动阻止敏感文件上传。
+
 
