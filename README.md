@@ -10,16 +10,16 @@
 
 ## 🆕 NEW / 近期更新
 
-### [横纵研究与商业尽调](hv-analysis-codex/README.md) · 新增
+### [横纵研究与商业尽调｜Joy 改编版](hv-analysis-joy/README.md) · 新增
 
 **输入**：公司、产品或人物，以及你想解决的决策问题和有权使用的材料。  
 **交付**：有来源定位的 Markdown 分析、决策简报、证据与待核验清单；可选本地 JSON/CSV 汇总与 A4 PDF。
 
 从发展历程、同期竞争与交汇洞察走向实际决策，区分母子公司、直接/间接客户和可比口径。**基础研究无需专用 API Key 或知识库账号**；先用虚构案例上手，技术检查与事实核验分别说明。
 
-[了解并开始 →](hv-analysis-codex/README.md) · [安装与工具指南](hv-analysis-codex/references/setup.md) · [验证范围](hv-analysis-codex/VALIDATION.md)
+[了解并开始 →](hv-analysis-joy/README.md) · [安装与工具指南](hv-analysis-joy/references/setup.md) · [验证范围](hv-analysis-joy/VALIDATION.md)
 
-首版 **v1.0.0（2026-10-15）**，基于 KKKKhazix 的横纵分析方法改编，署名与 MIT 许可见项目目录。
+当前版本 **v1.0.1（2026-10-19）**，项目名统一为 `hv-analysis-joy`，基于 KKKKhazix 的横纵分析方法改编，署名与 MIT 许可见项目目录。
 
 ### [微信公众号写作助手](kb-to-wechat-article/README.md) · 重点推荐
 
@@ -73,7 +73,7 @@
 
 ### 研究与决策
 
-- **[横纵研究与商业尽调](hv-analysis-codex/README.md)** — 主体核实、纵横分析、合作证据与决策简报；支持实际计划覆盖检查和可选本地 PDF。 `v1.0.0`
+- **[横纵研究与商业尽调｜Joy 改编版](hv-analysis-joy/README.md)** — 主体核实、纵横分析、合作证据与决策简报；支持实际计划覆盖检查和可选本地 PDF。 `v1.0.1`
 
 ### 文档生成
 
@@ -103,7 +103,7 @@
 
 ## 来源与许可
 
-Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://github.com/zarazhangrui/lark-minutes-tasks) 改编。改编范围及参考版本见[来源记录](getnote-meeting-actions/references/upstream.md)，原始 MIT 版权及许可全文保留于该 Skill 的 [LICENSE](getnote-meeting-actions/LICENSE)。横纵研究与商业尽调基于 [KKKKhazix 的 hv-analysis](https://github.com/KKKKhazix/khazix-skills/tree/main/hv-analysis) 改编，改造范围、参考提交及许可见[来源说明](hv-analysis-codex/THIRD-PARTY-NOTICES.md)。各作品以所在目录的许可证为准。
+Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://github.com/zarazhangrui/lark-minutes-tasks) 改编。改编范围及参考版本见[来源记录](getnote-meeting-actions/references/upstream.md)，原始 MIT 版权及许可全文保留于该 Skill 的 [LICENSE](getnote-meeting-actions/LICENSE)。横纵研究与商业尽调基于 [KKKKhazix 的 hv-analysis](https://github.com/KKKKhazix/khazix-skills/tree/main/hv-analysis) 改编，改造范围、参考提交及许可见[来源说明](hv-analysis-joy/THIRD-PARTY-NOTICES.md)。各作品以所在目录的许可证为准。
 
 ## 隐私
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "横纵研究与商业尽调｜Joy 改编版"
+  short_description: "围绕实际决策，交付可追溯分析、证据表与下一步核验"
+  default_prompt: "使用 $hv-analysis-joy 研究我指定的对象，先确认主体和决策问题，再给出有来源的分析及材料缺口。"

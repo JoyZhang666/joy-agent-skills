@@ -1,14 +1,16 @@
 ---
-name: hv-analysis-codex
+name: hv-analysis-joy
 description: 用发展历程、同期竞争对比和交汇洞察研究企业、产品或人物，支持主体消歧、供应商合作尽调、证据表和决策简报。适用于需要可追溯分析及下一步核验的问题；简单名词解释不必启动完整流程。
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   compatibility: "核心研究需要可读取资料并使用搜索工具的 AI 助手；数据汇总需 Python 3.10+，可选 PDF 需 Markdown、Playwright 和本机浏览器。PDF 首版仅验证 Windows Edge。"
   upstream-methodology: "KKKKhazix/khazix-skills hv-analysis"
 ---
 
-# 横纵研究与商业尽调（Codex 版）
+# hv-analysis-joy｜横纵研究与商业尽调
+
+Joy 改编版；适用于 Codex，当前验证环境为 Windows。
 
 输入研究对象、用途和可用材料，交付有证据定位的分析、主要缺口与下一步。基于上游横纵分析框架改编，来源见 [署名与许可](THIRD-PARTY-NOTICES.md)。
 
