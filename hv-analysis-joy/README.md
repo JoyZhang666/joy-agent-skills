@@ -4,7 +4,7 @@ Joy 改编版 · 适用于 Codex · 当前验证环境：Windows / Edge
 
 **从“这家公司是什么情况”，进一步走到“是否值得接触、还缺什么证据、下一步该问什么”。**
 
-版本 **v1.0.1** · 维护者 **JoyZhang666** · [MIT](LICENSE) · [上游与改造说明](THIRD-PARTY-NOTICES.md)
+版本 **v1.0.2** · 维护者 **JoyZhang666** · [MIT](LICENSE) · [上游与改造说明](THIRD-PARTY-NOTICES.md)
 
 这是一套交给 AI 助手阅读和执行的 Skill，附带本地数据汇总与可选 PDF 工具。继承 KKKKhazix 的横纵分析方法，整理为独立的 Codex 公开版本；所有随包案例均为虚构资料。
 
@@ -35,7 +35,7 @@ AI 应先说明实际保存位置和已识别版本；仅复制文件不等于�
 
 ## 从旧版升级
 
-旧公开版本名为 `hv-analysis-codex`。从 v1.0.1 起，目录、Skill 名称和调用统一为 `hv-analysis-joy`；旧链接保留迁移入口，不再提供第二套可安装 Skill。
+旧公开版本名为 `hv-analysis-codex`。从 v1.0.1 起，目录、Skill 名称和调用统一为 `hv-analysis-joy`；仓库当前只保留 `hv-analysis-joy` 一个项目目录，不保留旧名称文件夹；历史版本可从 Git 提交记录查看。
 
 升级时先保留已有定制和研究材料，按新目录安装并确认识别到 `hv-analysis-joy`。若此前安装过旧公开版本，确认新版本可用后再决定停用旧版本，避免重复识别。此次改名不自动修改任何人的本机安装目录。
 

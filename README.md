@@ -19,7 +19,7 @@
 
 [了解并开始 →](hv-analysis-joy/README.md) · [安装与工具指南](hv-analysis-joy/references/setup.md) · [验证范围](hv-analysis-joy/VALIDATION.md)
 
-当前版本 **v1.0.1（2026-10-19）**，项目名统一为 `hv-analysis-joy`，基于 KKKKhazix 的横纵分析方法改编，署名与 MIT 许可见项目目录。
+当前版本 **v1.0.2（2026-10-19）**，项目名统一为 `hv-analysis-joy`，基于 KKKKhazix 的横纵分析方法改编，署名与 MIT 许可见项目目录。
 
 ### [微信公众号写作助手](kb-to-wechat-article/README.md) · 重点推荐
 
@@ -73,7 +73,7 @@
 
 ### 研究与决策
 
-- **[横纵研究与商业尽调｜Joy 改编版](hv-analysis-joy/README.md)** — 主体核实、纵横分析、合作证据与决策简报；支持实际计划覆盖检查和可选本地 PDF。 `v1.0.1`
+- **[横纵研究与商业尽调｜Joy 改编版](hv-analysis-joy/README.md)** — 主体核实、纵横分析、合作证据与决策简报；支持实际计划覆盖检查和可选本地 PDF。 `v1.0.2`
 
 ### 文档生成
 
