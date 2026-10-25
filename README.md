@@ -22,19 +22,19 @@
 
 **找到你想做的事，点击作品名称即可进入使用说明。** ★ 为本页精选，非使用量或成熟度排名。
 
-| 我想做什么 | 选择哪个 Skill | 最后拿到什么 |
-|---|---|---|
-| 写一篇公众号文章 | ★ [微信公众号写作助手](kb-to-wechat-article/README.md) | 标题、提纲、文章草稿与待核对事项 |
-| 研究公司、产品或人物 | ★ [横纵研究与商业尽调](hv-analysis-joy/README.md) | 分析报告、一页决策简报与证据清单 |
-| 推进会议中的待办 | ★ [Get 会议行动](getnote-meeting-actions/README.md) | 有原文依据的行动清单与获授权执行后的成果 |
-| 把视频整理成文字 | [YouTube 转写全文稿](youtube-transcript/README.md) | 按来源顺序保存的全文稿草稿与待核对标识 |
-| 认真读完一本书 | [全书精读工作流](full-book-deep-reading-workflow/README.md) | 逐章笔记、阅读进度与范围明确的综述 |
-| 整理 Get 知识库 | [GetNote 知识库整理](getnote-knowledge-manager/README.md) | 分类建议与获授权归档后的核验记录 |
-| 制作手机阅读文档 | [适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md) | 窄幅 PDF；使用前先看验证限制 |
-| 整理项目文件与交接 | [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记与交接记录 |
-| 记录课程消耗与余额 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、余额与一致性备份 |
-| 安装、维护代理工具 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | 配置、检查、排障与回滚指引 |
-| 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo 客户端 YAML 与导入、排障指引 |
+| 序号 | 我想做什么 | 选择哪个 Skill | 最后拿到什么 |
+|:---:|---|---|---|
+| 01 | 写一篇公众号文章 | ★ [微信公众号写作助手](kb-to-wechat-article/README.md) | 标题、提纲、文章草稿与待核对事项 |
+| 02 | 研究公司、产品或人物 | ★ [横纵研究与商业尽调](hv-analysis-joy/README.md) | 分析报告、一页决策简报与证据清单 |
+| 03 | 推进会议中的待办 | ★ [Get 会议行动](getnote-meeting-actions/README.md) | 有原文依据的行动清单与获授权执行后的成果 |
+| 04 | 把视频整理成文字 | [YouTube 转写全文稿](youtube-transcript/README.md) | 按来源顺序保存的全文稿草稿与待核对标识 |
+| 05 | 认真读完一本书 | [全书精读工作流](full-book-deep-reading-workflow/README.md) | 逐章笔记、阅读进度与范围明确的综述 |
+| 06 | 整理 Get 知识库 | [GetNote 知识库整理](getnote-knowledge-manager/README.md) | 分类建议与获授权归档后的核验记录 |
+| 07 | 制作手机阅读文档 | [适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md) | 窄幅 PDF；使用前先看验证限制 |
+| 08 | 整理项目文件与交接 | [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记与交接记录 |
+| 09 | 记录课程消耗与余额 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、余额与一致性备份 |
+| 10 | 安装、维护代理工具 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | 配置、检查、排障与回滚指引 |
+| 11 | 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo 客户端 YAML 与导入、排障指引 |
 
 <a name="技术工具"></a>
 
