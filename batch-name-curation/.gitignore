@@ -1,0 +1,8 @@
+# Runtime evidence may contain personal filenames, absolute paths and hashes.
+audit.json
+plan.json
+rename-manifest.csv
+preview.md
+*.jsonl
+__pycache__/
+*.py[cod]

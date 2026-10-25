@@ -1,0 +1,6 @@
+interface:
+  display_name: "批量命名整理"
+  short_description: "分析文件与目录名称，预览广告及乱码清理，审批后执行并全量校验与恢复"
+  default_prompt: "使用 $batch-name-curation 分析指定文件夹的命名，提供清晰的整理方案与完整清单，等我确认后再执行。"
+policy:
+  allow_implicit_invocation: true

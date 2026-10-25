@@ -6,7 +6,7 @@
 
 [按任务选工具](#按任务选工具) · [看精选作品](#精选作品) · [第一次使用](#第一次使用) · [近期更新](#近期更新) · [认识 Joy](https://github.com/JoyZhang666)
 
-这里有 **11 个 Skill**，帮助你写文章、做研究、整理会议、阅读资料和管理日常工作。Skill 是交给 AI 助手阅读和执行的工作说明，有些附带脚本和模板；先选一个任务，再按对应指南准备。
+这里有 **12 个 Skill**，帮助你写文章、做研究、整理会议、阅读资料和管理日常工作。Skill 是交给 AI 助手阅读和执行的工作说明，有些附带脚本和模板；先选一个任务，再按对应指南准备。
 
 <a name="按场景找工具"></a>
 <a name="会议与执行"></a>
@@ -35,6 +35,7 @@
 | 09 | 记录课程消耗与余额 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、余额与一致性备份 |
 | 10 | 安装、维护代理工具 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | 配置、检查、排障与回滚指引 |
 | 11 | 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo 客户端 YAML 与导入、排障指引 |
+| 12 | 批量整理文件与文件夹名称 | [批量命名整理](batch-name-curation/README.md) | 完整改名清单、获批执行后的核验结果与回滚入口 |
 
 <a name="技术工具"></a>
 
@@ -112,6 +113,7 @@ Joy 改编版，基于 KKKKhazix 的横纵分析方法；真实研究仍需核�
 
 ## 近期更新
 
+- **2026-10-26 · 批量命名整理 v1.1.0：** 新增文件与目录命名整理，先审批清单再执行，提供完整性核验与回滚。[开始使用](batch-name-curation/README.md)
 - **2026-10-19 · 横纵研究 v1.0.2：** 统一公开名称为 `hv-analysis-joy`。[查看说明](hv-analysis-joy/README.md#从旧版升级)
 - **2026-10-08 · 公众号写作 v4.16.0：** 增加手机版 Word 副本与 PDF 页图可读性检查。[查看变化](kb-to-wechat-article/CHANGELOG.md)
 
