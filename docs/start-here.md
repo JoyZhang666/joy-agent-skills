@@ -16,6 +16,7 @@
 | 认真读一章书 | [全书精读工作流](../full-book-deep-reading-workflow/README.md) | 有权使用的章节文件与阅读范围 |
 | 记录课程余额 | [课程课时台账](../class-hours-ledger/README.md) | 先使用虚构购课、赠课和上课记录 |
 | 把资料变得容易交接 | [项目文件管理](../project-file-management/README.md) | 一个测试目录或明确授权的项目目录 |
+| 清理文件名广告或有依据的乱码 | [批量命名整理](../batch-name-curation/README.md#新手安装) | Windows、Python 3.10+ 与虚构测试文件夹；先审批清单再改名 |
 | 整理 Get 笔记分类 | [GetNote 知识库整理](../getnote-knowledge-manager/README.md) | Get API 凭据、目标知识库与分类规则 |
 
 **进阶网络工具：** [mihomo 安装与运维](../mihomo-vpn-install/README.md)用于安装、配置和排障；[Crossborder Tunnel Kit](../crossborder-tunnel-kit/README.md)提供客户端 YAML 与导入指引，必须先准备 VPS。两者需要 Linux 与网络基础，请先阅读外部条件与能力边界。
@@ -44,7 +45,7 @@ API 可以理解为软件与服务之间的调用入口；API Key 是你访问�
 - **公众号写作、横纵研究**：基础写作或研究不要求本包专用 API Key。公众号送草稿箱是可选步骤，按[公众号新手指南](../kb-to-wechat-article/references/getting-started.md)单独准备；研究工具见[安装指南](../hv-analysis-joy/references/setup.md)。
 - **视频全文稿**：已有字幕路线不需要转写 API Key。需要云转写时，按[新手配置教程](../youtube-transcript/references/setup.zh-CN.md)选择服务、申请、配置并完成小样本验证。服务额度与价格以服务商当前页面为准。
 - **GetNote 知识库整理**：需要自己的 Get API Key、Client ID 和相应权限，详见[依赖与使用](../getnote-knowledge-manager/README.md#依赖与使用)。Get 会议行动使用 Get 官方 CLI 的授权流程，两者不能混为一谈。
-- **课程台账、项目文件管理**：辅助工具不要求外部业务 API；宿主 Agent 本身的账号、模型费用另计。
+- **课程台账、项目文件管理、批量命名整理**：辅助工具不要求外部业务 API；宿主 Agent 本身的账号、模型费用另计。
 
 把密钥留在本机私有配置里。不要放进公开 README、Issue、截图或提交记录；遇到报错时只分享去掉密钥和私人路径的报错内容。
 
@@ -59,6 +60,7 @@ API 可以理解为软件与服务之间的调用入口；API Key 是你访问�
 - 会议行动：每项待办都能回到原文；未明确的负责人、时间保留“待确认”。
 - 章节精读：笔记有章节或原文定位，下次阅读能接续进度。
 - 课程台账：用“购入 10 + 赠送 2 − 上课 1 = 11”的虚构例子核对余额。
+- 批量命名整理：先核对虚构文件的完整新旧名称清单；批准后执行，核对内容与修改时间，并检查回滚预览。
 
 看到“脚本运行结束”还不等于结果正确。确认交付物确实存在、范围正确、能打开，再逐步扩大使用范围。
 
