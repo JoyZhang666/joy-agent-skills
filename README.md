@@ -2,94 +2,118 @@
 
 # Joy 的实用 AI 工具箱
 
-**从业务一线探索 AI Agents，把反复打磨的方法做成可以复用的 Skills、工作流与小应用。**
+**从业务一线探索 AI Agents，把反复打磨的方法做成可复用的 Skills、工作流与小应用。**
 
-[从这里开始](docs/start-here.md) · [浏览全部作品](#按场景找工具) · [实践手记](#实践手记) · [认识 Joy](https://github.com/JoyZhang666)
+[按任务选工具](#按任务选工具) · [看精选作品](#精选作品) · [第一次使用](#第一次使用) · [近期更新](#近期更新) · [认识 Joy](https://github.com/JoyZhang666)
 
-第一次接触 Skill？它是一套交给 AI Agent 阅读和执行的工作说明，有些还附带脚本和模板。先选一个具体任务，再按项目指南准备环境。
+这里有 **11 个 Skill**，帮助你写文章、做研究、整理会议、阅读资料和管理日常工作。Skill 是交给 AI 助手阅读和执行的工作说明，有些附带脚本和模板；先选一个任务，再按对应指南准备。
 
-## 🆕 NEW / 近期更新
+<a name="按场景找工具"></a>
+<a name="会议与执行"></a>
+<a name="知识与阅读"></a>
+<a name="内容创作"></a>
+<a name="研究与决策"></a>
+<a name="文档生成"></a>
+<a name="日常管理"></a>
+<a name="youtube-转写全文稿"></a>
+<a name="全书精读工作流"></a>
 
-### [横纵研究与商业尽调｜Joy 改编版](hv-analysis-joy/README.md) · 新增
+## 按任务选工具
 
-**输入**：公司、产品或人物，以及你想解决的决策问题和有权使用的材料。  
-**交付**：有来源定位的 Markdown 分析、决策简报、证据与待核验清单；可选本地 JSON/CSV 汇总与 A4 PDF。
+**找到你想做的事，点击作品名称即可进入使用说明。** ★ 为本页精选，非使用量或成熟度排名。
 
-从发展历程、同期竞争与交汇洞察走向实际决策，区分母子公司、直接/间接客户和可比口径。**基础研究无需专用 API Key 或知识库账号**；先用虚构案例上手，技术检查与事实核验分别说明。
+| 我想做什么 | 选择哪个 Skill | 最后拿到什么 |
+|---|---|---|
+| 写一篇公众号文章 | ★ [微信公众号写作助手](kb-to-wechat-article/README.md) | 标题、提纲、文章草稿与待核对事项 |
+| 研究公司、产品或人物 | ★ [横纵研究与商业尽调](hv-analysis-joy/README.md) | 分析报告、一页决策简报与证据清单 |
+| 推进会议中的待办 | ★ [Get 会议行动](getnote-meeting-actions/README.md) | 有原文依据的行动清单与获授权执行后的成果 |
+| 把视频整理成文字 | [YouTube 转写全文稿](youtube-transcript/README.md) | 按来源顺序保存的全文稿草稿与待核对标识 |
+| 认真读完一本书 | [全书精读工作流](full-book-deep-reading-workflow/README.md) | 逐章笔记、阅读进度与范围明确的综述 |
+| 整理 Get 知识库 | [GetNote 知识库整理](getnote-knowledge-manager/README.md) | 分类建议与获授权归档后的核验记录 |
+| 制作手机阅读文档 | [适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md) | 窄幅 PDF；使用前先看验证限制 |
+| 整理项目文件与交接 | [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记与交接记录 |
+| 记录课程消耗与余额 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、余额与一致性备份 |
+| 安装、维护代理工具 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | 配置、检查、排障与回滚指引 |
+| 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo 客户端 YAML 与导入、排障指引 |
 
-[了解并开始 →](hv-analysis-joy/README.md) · [安装与工具指南](hv-analysis-joy/references/setup.md) · [验证范围](hv-analysis-joy/VALIDATION.md)
+<a name="技术工具"></a>
 
-当前版本 **v1.0.2（2026-10-19）**，项目名统一为 `hv-analysis-joy`，基于 KKKKhazix 的横纵分析方法改编，署名与 MIT 许可见项目目录。
+**选用提示：** Get 相关工具需要对应账号授权；两项网络工具需要 Linux 与网络基础，Tunnel Kit 还需要 VPS。手机 PDF 工具的真实隔离渲染尚未验收。各作品的依赖、验证范围与限制以其使用说明为准。
 
-### [微信公众号写作助手](kb-to-wechat-article/README.md) · 重点推荐
+<a name="更多精选作品"></a>
 
-**输入**：一个主题或一份有权使用的笔记、文字或文件，以及你想写给谁看。  
-**交付**：标题建议、提纲、Markdown 文章草稿，以及需要核对的事实和来源；按需配图、排版或送入公众号草稿箱。
+## 精选作品
 
-从选角度到写初稿、检查事实，带新手一步步完成第一篇。**基础写作无需知识库账号或公众号密钥**；送草稿箱需配置接口并获授权，最终公开发表由你完成。已有 Word 定稿也可按指南转换并检查手机预览，转换限制见项目说明。
+从三个具体任务开始，了解这些 Skill 如何把资料变成可继续使用的成果。
 
-[了解并开始 →](kb-to-wechat-article/README.md) · [第一次使用指南](kb-to-wechat-article/references/getting-started.md) · [版本变化](kb-to-wechat-article/CHANGELOG.md)
+<a name="微信公众号写作助手--重点推荐"></a>
 
-近期版本 **v4.16.0（2026-10-08）**；本地转换与公众号联调的适用条件、验证范围见项目说明。
+### 01｜微信公众号写作助手
 
-## 更多精选作品
+**把笔记、资料和想法，整理成一篇有依据、方便修改的文章。**
 
-### [Get 会议行动](getnote-meeting-actions/README.md)
+- **你提供：** 一个主题或一份资料，再说说写给谁看。
+- **你得到：** 标题建议、提纲、文章草稿，以及需要核对的事实和来源。
+- **特色：** 一步步带新手完成首篇；知识库可跳过，基础写作无需公众号密钥。满意后再按需配图、排版或送草稿箱。
 
-**输入**：你选定的 Get 会议原文，以及希望处理的范围。  
-**交付**：带原文依据和稳定编号的行动清单；获授权执行后保存本地成果与续接记录。
+> 试着说：“我第一次用，没有知识库。请根据我的三条心得写一篇短文，先给标题和提纲。”
 
-[了解并开始 →](getnote-meeting-actions/README.md)
+**开始使用 → [公众号写作新手指南](kb-to-wechat-article/references/getting-started.md)**  
+其他资料：[功能与准备条件](kb-to-wechat-article/README.md) · [版本记录](kb-to-wechat-article/CHANGELOG.md)
 
-### [Youtube 转写全文稿](youtube-transcript/README.md)
+送草稿箱需配置接口并获授权，公开发表由你完成；Word 转换的支持范围见项目说明。
 
-**输入**：一个有权处理的 YouTube 视频链接，以及本地保存目录。  
-**交付**：按来源顺序保存的 Markdown 全文稿草稿，附来源与待核对标识；中断结果不能当作完整交付。
+---
 
-[了解并开始 →](youtube-transcript/README.md)
+<a name="横纵研究与商业尽调joy-改编版--新增"></a>
 
-### [全书精读工作流](full-book-deep-reading-workflow/README.md)
+### 02｜横纵研究与商业尽调
 
-**输入**：你有权使用的书籍或章节文件，及本次阅读范围。  
-**交付**：有原文定位的逐章笔记、阅读进度和范围明确的综述，可接续上次阅读。
+**从“这家公司是什么情况”，走到“是否值得接触、还缺什么证据”。**
 
-[了解并开始 →](full-book-deep-reading-workflow/README.md)
+- **你提供：** 公司、产品或人物，以及你希望解决的决策问题。
+- **你得到：** 有来源定位的分析、一页决策简报、证据与待核验清单。
+- **特色：** 先核实主体，再看发展历程与同期竞争；区分合作吸引力和证据充分度。基础研究无需专用 API Key 或知识库账号。
 
-## 按场景找工具
+> 先看成果：[虚构供应商的一页决策简报](hv-analysis-joy/examples/synthetic-supplier/decision-brief.md)。示例用于了解交付形式，不代表真实公司结论。
 
-### 会议与执行
+**开始使用 → [研究安装与工具指南](hv-analysis-joy/references/setup.md)**  
+其他资料：[功能与准备条件](hv-analysis-joy/README.md) · [验证范围](hv-analysis-joy/VALIDATION.md)
 
-- **[Get 会议行动](getnote-meeting-actions/README.md)** — 带原文依据和稳定编号的行动清单；获授权执行后保存本地成果与续接记录。 `v2.0.0`
+Joy 改编版，基于 KKKKhazix 的横纵分析方法；真实研究仍需核对来源和事实。
 
-### 知识与阅读
+---
 
-- **[Youtube 转写全文稿](youtube-transcript/README.md)** — 按来源顺序保存的 Markdown 全文稿草稿，附来源与待核对标识；中断结果不能当作完整交付。 `v2.2.1`
-- **[全书精读工作流](full-book-deep-reading-workflow/README.md)** — 有原文定位的逐章笔记、阅读进度和范围明确的综述，可接续上次阅读。 `v2.0.1`
-- **[GetNote 知识库整理](getnote-knowledge-manager/README.md)** — 分类建议；在有效授权下归档，并逐条记录实际知识库 ID 的核验结果。 `v2.0.0`
+<a name="get-会议行动"></a>
 
-### 内容创作
+### 03｜Get 会议行动
 
-- **[微信公众号写作助手](kb-to-wechat-article/README.md)** — 从笔记、资料和想法写出有依据的文章；新手逐步引导，知识库可跳过，按需配图与送草稿箱。 `v4.16.0`
+**把会议原文变成有依据的待办，再按你选定的事项推进。**
 
-### 研究与决策
+- **你提供：** 指定的 Get 会议原文与处理范围。
+- **你得到：** 带稳定编号的行动清单；获授权执行后保存本地成果与续接记录。
+- **特色：** 每项待办能回到原文；可以按编号选择执行，并接着上次进度继续。
 
-- **[横纵研究与商业尽调｜Joy 改编版](hv-analysis-joy/README.md)** — 主体核实、纵横分析、合作证据与决策简报；支持实际计划覆盖检查和可选本地 PDF。 `v1.0.2`
+> 试着说：“先列出有原文依据的待办。”确认清单后，再说：“1、3 你来做。”
 
-### 文档生成
+**开始使用 → [会议行动使用指南](getnote-meeting-actions/README.md#开始使用)**  
+其他资料：[完整技能流程](getnote-meeting-actions/SKILL.md) · [来源与改编说明](getnote-meeting-actions/references/upstream.md)
 
-- **[适合手机阅读的 PDF 生成器](mobile-pdf-report/README.md)** — 将 Markdown/HTML 排版为窄幅 PDF，支持受限本地素材；真实隔离渲染尚未验收，使用前请阅读验证限制。 `v1.0.5`
+需要 Get 官方 CLI 授权；成果默认本地保存，上传 Get 需另行授权。
 
-### 日常管理
+## 第一次使用
 
-- **[项目文件管理](project-file-management/README.md)** — 工作区索引、项目登记与交接记录；本地辅助工具提供检查结果。 `v1.1.2`
-- **[课程课时台账](class-hours-ledger/README.md)** — 本地课时流水、余额查询和一致性备份，不联动资金账本。 `v1.1.0`
+1. **选一个任务：** 从[上方目录](#按任务选工具)进入对应作品。
+2. **让 AI 带你准备：** 阅读该作品的 README 和 SKILL，确认输入、依赖与权限，再安装或加载完整目录。
+3. **先做一个小样本：** 使用虚构或有权处理的资料，核对成果后再扩大范围。
 
-### 技术工具
+**[打开完整新手指南 →](docs/start-here.md)**  
+无需安装 GitHub Windows 客户端。是否能自动安装、读取文件或运行脚本，取决于你使用的 AI 助手。
 
-适合已有 Linux 与网络基础的使用者；请先阅读各项目的外部条件和能力边界。
+## 近期更新
 
-- **[mihomo 安装与运维](mihomo-vpn-install/README.md)** — 安装检查、配置与排障记录、回滚指引；实际变更按授权执行和核验。 `v2.1.2`
-- **[Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md)** — 交付 Mihomo 客户端 YAML 和导入指引，附 VPS 准备、WARP 链式与故障索引；实际连通性须验收。 `v0.3.0`
+- **2026-10-19 · 横纵研究 v1.0.2：** 统一公开名称为 `hv-analysis-joy`。[查看说明](hv-analysis-joy/README.md#从旧版升级)
+- **2026-10-08 · 公众号写作 v4.16.0：** 增加手机版 Word 副本与 PDF 页图可读性检查。[查看变化](kb-to-wechat-article/CHANGELOG.md)
 
 ## 实践手记
 
