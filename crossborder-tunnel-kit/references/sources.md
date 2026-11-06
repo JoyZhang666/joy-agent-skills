@@ -1,5 +1,7 @@
 # 来源、版本与替代方案
 
+v0.4.0 当前来源核对日期：2026-11-07。无域名指纹接口依据 [Mihomo TLS](https://wiki.metacubex.one/config/proxies/tls/#fingerprint)及 v1.19.32 源码；真实回环握手固定使用 Hysteria app/v2.12.2 和 Mihomo v1.19.32，Linux发行包及SHA-256见 `tests/native-assets.json`，测试方法见 [testing.md](testing.md)。CDN组件、WARP与验收范围见 [cdn-warp.md](cdn-warp.md) 和 [versions.json](versions.json)。以下2026-09记录保留为旧版解析基线，不代表当前未部署状态。
+
 核查日期：2026-09-10（Asia/Shanghai）；解析验证：2026-09-11。下面是本次固定的兼容性基线，不代表将来自动追随 latest。
 
 | 组件 | 固定版本 | 验证覆盖 |

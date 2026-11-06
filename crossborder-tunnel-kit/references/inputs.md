@@ -7,7 +7,8 @@
 | SERVER_HOST | VPS IP 或已解析域名；示例使用保留域名，不复用别人地址 |
 | HY2_UDP_PORT / REALITY_TCP_PORT | JSON 整数，1..65535；相同数值可分别用于 UDP/TCP，仍须核查占用 |
 | HY2_PASSWORD | 用户本地生成高熵口令；客户端与服务端相同 |
-| TLS_SERVER_NAME | 有效证书 SAN 中的域名 |
+| TLS_SERVER_NAME | 仅旧域名直连模板使用，填有效证书 SAN 的域名；默认无域名模板不要求 |
+| TLS_CERT_SHA256 | 默认无域名模板必填：完整证书DER的SHA-256，64位十六进制；通过已验证管理通道获取 |
 | TLS_CERT_PATH / TLS_KEY_PATH | Linux 绝对文件路径，服务用户可读，私钥不可公开 |
 | REALITY_UUID | 本地生成 UUID，两端同一用户标识 |
 | REALITY_TARGET | 经 VPS 实测支持所需 TLS 特性的目标域名，无 scheme、路径或端口 |
@@ -34,6 +35,10 @@ python scripts/scan.py NEW_CONFIG_FILE --runtime
 共享发布前：`python scripts/scan.py PUBLIC_DIRECTORY`。公开扫描检查所有扩展名，发现只输出文件/行号/类别；文档地址和少量公开 DNS 地址有窄范围豁免。不存在、二进制、无法解码/读取、符号链接均报错。退出码 0 表示所选模式未发现规则命中，1 表示命中，2 表示扫描失败。`--runtime` 只找残留占位符，绝不能作为脱敏扫描。扫描器不是密钥保险箱；人工复核项目名称、账户、日志、截图和授权信息。
 
 ## 客户端 YAML 输出
+
+默认无域名路线使用 `examples/client-hy2-pinned.template.json`，详见 [no-domain.md](no-domain.md)。下面旧域名与WARP模板保留兼容，不是默认必填域名的要求。
+
+从无域名主线增加客户端WARP或Reality时，私密组合模板中的HY2节点必须沿用已验收的sni与fingerprint，具体步骤见 [client-warp.md](client-warp.md) 和 [optional-routes.md](optional-routes.md)。此时继续使用 TLS_CERT_SHA256，不需要 TLS_SERVER_NAME；下文域名字段仅适用于未调整的旧CA模板。
 
 参数文件仍是私有 JSON；输出名以 `.yaml` 或 `.yml` 结尾时，渲染器生成块状 YAML（字符串逐项转义、数字保留类型），其他后缀继续输出 JSON。模板仍以 JSON 存储，用户无需直接导入模板。
 

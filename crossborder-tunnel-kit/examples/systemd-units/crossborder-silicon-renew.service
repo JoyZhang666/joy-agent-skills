@@ -1,0 +1,10 @@
+[Unit]
+Description=Renew crossborder TLS using restricted DNS credentials
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/certbot renew --non-interactive --config-dir /etc/crossborder-silicon/acme --work-dir /var/lib/crossborder-acme --logs-dir /var/log/crossborder-acme --deploy-hook "/usr/bin/python3 /opt/crossborder/manager/renew_cert.py"
+ExecStartPost=/usr/bin/python3 /opt/crossborder/manager/renew_cert.py
+UMask=0077

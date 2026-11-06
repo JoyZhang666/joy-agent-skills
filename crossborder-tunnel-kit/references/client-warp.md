@@ -10,6 +10,8 @@
 
 ## 已包含的模板与参数
 
+旧组合模板的 HY2 节点适用于公共 CA 域名基线。若现有主线是默认无域名自签+指纹路线，先在私密模板副本中将 HY2 节点替换为已验收的 `client-hy2-pinned.template.json` 中同名节点，保留 `sni: tunnel.invalid`、`fingerprint: {{TLS_CERT_SHA256}}` 和 `skip-cert-verify: false`，再使用其余 WARP/规则部分；无需补买域名或填写 TLS_SERVER_NAME。不要丢弃原来的证书固定校验，渲染后重新做原生与真实链式验收。
+
 使用 [client-hy2-warp.template.json](../examples/client-hy2-warp.template.json)，由 [render.py](../scripts/render.py) 输出 `tunnel-client-warp.yaml`。模板只支持 IPv4，保留 TLS 校验和回环监听，不启用 TUN，不依赖 geosite/geoip 数据库。
 
 | 用户私有 profile 字段 | 输入参数／处理 |
