@@ -1,10 +1,10 @@
 {
   "skill_version": "0.4.0",
-  "status": "release-validation",
+  "status": "release",
   "checked_date": "2026-11-07",
   "hysteria": {
     "version": "app/v2.12.2",
-    "coverage": "official documentation/source review only; not started"
+    "coverage": "Linux loopback-isolated Hysteria2/Mihomo live certificate-pinning handshake passed; see current_release_validation"
   },
   "native_checks": [
     {
@@ -40,7 +40,20 @@
       "exit_code": 0
     }
   ],
-  "limits": "Historical parser checks below retain their original scope; current release evidence is recorded separately.",
+  "limits": "Historical parser and candidate checks below retain their original scope; current_release_validation supersedes their pending-Linux wording for this public package. No production service is changed by publication.",
+  "current_release_validation": {
+    "date": "2026-11-07",
+    "windows_local": {"python": "3.12.14", "run": 47, "passed": 38, "platform_skipped": 9},
+    "linux_ci": {"python": ["3.10", "3.12"], "run_per_version": 47, "passed_per_version": 47, "skipped": 0},
+    "live_hy2": {
+      "hysteria": "2.12.2", "mihomo": "1.19.32",
+      "passed": ["YAML native parse", "correct pin", "wrong pin rejected", "missing pin rejected", "replaced certificate rejected", "rotated pin restored"],
+      "evidence": "https://github.com/JoyZhang666/joy-agent-skills/actions/runs/42269941124/job/128071583882",
+      "scope": "Linux network namespace with loopback only; ephemeral certificates and synthetic authentication"
+    },
+    "final_ci": "See required release validation in PR #1 and its crossborder-tunnel-kit workflow; Windows explicitly skips six Linux service transactions and three flock tests.",
+    "limits": "Isolated functional tests and user-reported CDN acceptance do not prove all public networks, GUI versions, timed playback or whole-device leak behavior."
+  },
   "release_checks": {
     "date": "2026-09-29",
     "scope": "7 synthetic renderer regression tests passed; 6 JSON/YAML fixtures parsed by Mihomo 1.19.30 Windows amd64-compatible using -t. No live VPS, GUI import, WARP handshake or playback acceptance.",

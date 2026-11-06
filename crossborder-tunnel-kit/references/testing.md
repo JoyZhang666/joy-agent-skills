@@ -1,7 +1,7 @@
 # 开发测试与证据范围
 
 Python 3.10+ 标准库。完整回归命令：`python -B -m unittest discover -s tests -v`。
-使用临时虚构数据与服务回调，不连接生产服务器、不实际调用 systemctl。Windows 缺少符号链接权限及 Linux flock 时明确跳过，Linux CI 必须运行这些用例。命令本身不是沙箱，只在已审阅代码的开发环境或一次性 CI runner 运行。
+使用临时虚构数据与服务回调，不连接生产服务器、不实际调用 systemctl。Windows 明确跳过6项仅适用于 Linux 的服务指针事务测试和3项 flock 测试，Linux CI 必须运行全部47项；Windows 保留配置、计划、订阅发布和巡检等38项回归。命令本身不是沙箱，只在已审阅代码的开发环境或一次性 CI runner 运行。
 
 ## 真实证书握手
 

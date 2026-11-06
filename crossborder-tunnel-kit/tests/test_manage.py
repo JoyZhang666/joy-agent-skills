@@ -1,6 +1,7 @@
 """Exercise actual pointer/journal transactions with synthetic service callbacks."""
 import json
 import hashlib
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -11,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import manage
 
 
+@unittest.skipUnless(os.name == 'posix', 'Linux service transaction semantics required')
 class TransactionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
