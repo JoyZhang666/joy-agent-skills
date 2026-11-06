@@ -1,7 +1,7 @@
 {
-  "skill_version": "0.3.0",
-  "status": "experimental",
-  "checked_date": "2026-09-11",
+  "skill_version": "0.4.0",
+  "status": "release-validation",
+  "checked_date": "2026-11-07",
   "hysteria": {
     "version": "app/v2.12.2",
     "coverage": "official documentation/source review only; not started"
@@ -40,11 +40,61 @@
       "exit_code": 0
     }
   ],
-  "limits": "Windows parse checks only. Not Linux deployment, runtime handshake, systemd or network acceptance.",
+  "limits": "Historical parser checks below retain their original scope; current release evidence is recorded separately.",
   "release_checks": {
     "date": "2026-09-29",
     "scope": "7 synthetic renderer regression tests passed; 6 JSON/YAML fixtures parsed by Mihomo 1.19.30 Windows amd64-compatible using -t. No live VPS, GUI import, WARP handshake or playback acceptance.",
-    "synthetic_fixtures": ["client-hy2.json", "client-hy2.yaml", "client-hy2-reality.json", "client-hy2-reality.yaml", "client-hy2-warp.json", "client-hy2-warp.yaml"],
+    "synthetic_fixtures": [
+      "client-hy2.json",
+      "client-hy2.yaml",
+      "client-hy2-reality.json",
+      "client-hy2-reality.yaml",
+      "client-hy2-warp.json",
+      "client-hy2-warp.yaml"
+    ],
     "regression_command": "python -B tests/test_render.py -v"
+  },
+  "cdn_checks": {
+    "live_line": "DNS/bootstrap and edge reachability were repaired with an access-network tested dual-entry pool. User confirmed Windows/Android and YouTube success; isolated and system-wide scopes remain distinct.",
+    "xray_linux": "26.3.27 parse passed",
+    "date": "2026-11-06",
+    "tests": 30,
+    "caddy_linux": "2.11.4 synthetic certificate validation passed",
+    "mihomo_windows": "1.19.32 parse passed",
+    "service_transactions": "native rejection, activate, rollback, idempotence passed on Linux",
+    "renewal": "DNS-01 staging dry run and hook passed; real scheduled check succeeded with certificate not due; shared lock and reconciliation tested",
+    "public_checks": 9,
+    "isolated_dns_udp_checks": 6
+  },
+  "subscription_candidate": {
+    "date": "2026-11-07",
+    "tests": 38,
+    "windows_skipped": 9,
+    "status": "User accepted URL import and manual update on both clients; no independently timed automatic-refresh claim.",
+    "limits": "User reports Windows/Android and YouTube success on prior dual-entry profile; this is not a full system leak or timed video audit."
+  },
+  "monitor_48h_candidate": {
+    "date": "2026-11-07",
+    "windows_tests": {
+      "run": 41,
+      "passed": 32,
+      "platform_skipped": 9
+    },
+    "routine_hours": 48,
+    "unhealthy_current_recheck_seconds": 300,
+    "maximum_rechecks_per_cycle": 1,
+    "stale_evidence_seconds": 7200,
+    "limits": "New recheck tests use a synthetic clock and mocked network. Prior Linux 38 tests apply to rc.3; no new Linux run claimed.",
+    "scheduled_trigger": "2026-11-07T01:22:03+08:00; completed 01:22:18, exit 0, no publication required"
+  },
+  "user_acceptance": {
+    "date": "2026-11-07",
+    "status": "accepted by user",
+    "scope": [
+      "Windows and Android connectivity",
+      "YouTube playback",
+      "private subscription import and manual update"
+    ],
+    "limits": "Not an independently timed video, refresh-cycle or whole-device leak audit."
   }
 }

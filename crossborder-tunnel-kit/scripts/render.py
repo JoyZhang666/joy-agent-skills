@@ -56,6 +56,15 @@ def render(template, values_path, output):
     # Windows requires a user-private directory ACL, checked by the operator.
     values = json.loads(values_path.read_text(encoding="utf-8-sig"))
     result = expand(json.loads(template.read_text(encoding="utf-8-sig")), values)
+    # A pin is an authentication requirement, never an optional insecure fallback.
+    if isinstance(result, dict):
+        for proxy in result.get("proxies", []):
+            if "fingerprint" in proxy:
+                pin = proxy["fingerprint"]
+                if (not isinstance(pin, str) or
+                        not re.fullmatch(r"[0-9a-fA-F]{64}", pin) or
+                        proxy.get("skip-cert-verify", False) is not False):
+                    raise ValueError("SHA-256 certificate pin with verification required")
     data = (yaml_text(result) if output.suffix.lower() in (".yaml", ".yml")
             else json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
     if "{{" in data or "}}" in data:

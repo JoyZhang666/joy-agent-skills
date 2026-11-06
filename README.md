@@ -34,12 +34,12 @@
 | 08 | 整理项目文件与交接 | [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记与交接记录 |
 | 09 | 记录课程消耗与余额 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、余额与一致性备份 |
 | 10 | 安装、维护代理工具 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | 配置、检查、排障与回滚指引 |
-| 11 | 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo 客户端 YAML 与导入、排障指引 |
+| 11 | 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo YAML；可选 CDN、私密订阅与入口维护 |
 | 12 | 批量整理文件与文件夹名称 | [批量命名整理](batch-name-curation/README.md) | 完整改名清单、获批执行后的核验结果与回滚入口 |
 
 <a name="技术工具"></a>
 
-**选用提示：** Get 相关工具需要对应账号授权；两项网络工具需要 Linux 与网络基础，Tunnel Kit 还需要 VPS。手机 PDF 工具的真实隔离渲染尚未验收。各作品的依赖、验证范围与限制以其使用说明为准。
+**选用提示：** Get 相关工具需要对应账号授权；两项网络工具需要 Linux 与网络基础，Tunnel Kit 需要自有 VPS，自有域名可选、默认无需填写。手机 PDF 工具的真实隔离渲染尚未验收。各作品的依赖、验证范围与限制以其使用说明为准。
 
 **批量命名整理：** 需要 Windows 和 Python 3.10+，无需 API；先核对完整改名清单，再批准执行。[新手安装 →](batch-name-curation/README.md#新手安装)
 
@@ -115,6 +115,8 @@ Joy 改编版，基于 KKKKhazix 的横纵分析方法；真实研究仍需核�
 
 ## 近期更新
 
+- **2026-11-07 · Crossborder Tunnel Kit v0.4.0：** 默认无需自有域名，新增证书指纹校验路线，以及可选 CDN 双入口、私密订阅和入口维护。[开始使用](crossborder-tunnel-kit/README.md)
+
 - **2026-10-26 · 批量命名整理 v1.1.0：** 新增文件与目录命名整理，先审批清单再执行，提供完整性核验与回滚。[开始使用](batch-name-curation/README.md#新手安装)
 - **2026-10-19 · 横纵研究 v1.0.2：** 统一公开名称为 `hv-analysis-joy`。[查看说明](hv-analysis-joy/README.md#从旧版升级)
 - **2026-10-08 · 公众号写作 v4.16.0：** 增加手机版 Word 副本与 PDF 页图可读性检查。[查看变化](kb-to-wechat-article/CHANGELOG.md)
@@ -136,5 +138,3 @@ Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://gi
 ## 隐私
 
 本仓库仅收录通用说明、脚本、空白模板和虚构示例。真实会议、个人配置、客户资料、登录凭据和运行日志不纳入仓库。上传前逐项检查文件；网页上传也需要人工检查，不能依赖 .gitignore 自动阻止敏感文件上传。
-
-

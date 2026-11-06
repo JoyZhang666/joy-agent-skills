@@ -7,6 +7,8 @@ Hy2 已连接但 YouTube/Google 出口有问题时，先读 [故障索引](troub
 
 ## Reality 备线
 
+已有默认无域名 HY2 主线时，在私密组合模板副本中保留已验收 HY2 节点的 `sni: tunnel.invalid`、`fingerprint: {{TLS_CERT_SHA256}}` 与 `skip-cert-verify: false`，再添加 Reality 节点；不能直接用旧组合模板中的 CA 域名 HY2 节点覆盖它。Reality 的目标名称不是用户必须注册的自有域名。两条线路分别原生检查和真实验收。
+
 需要应对 UDP 不通等已确认问题时，再添加 Xray Reality：使用 `server-xray-reality.template.json` 和 `client-hy2-reality.template.json`，`SELECT` 手动选 HY2 或 REALITY。服务端 shortIds 与客户端 short-id 必须一致且非空。目标域名需从 VPS 实测，不把某个固定网站作为永久可靠前提。
 
 Reality 模板默认直接访问公网，不接 WARP。两种协议在同一 VPS 上只能分散协议层故障；IP 封锁、主机故障、流量额度耗尽和供应商停机仍共同失效。主机级容灾需要另一个独立节点和单独授权。

@@ -1,0 +1,13 @@
+[Unit]
+Description=Cloudflare source restrictions for crossborder HTTPS only
+Before=crossborder-silicon-caddy.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/nft -f /etc/crossborder-silicon/firewall.nft
+ExecReload=/usr/sbin/nft -f /etc/crossborder-silicon/firewall.nft
+ExecStop=/usr/sbin/nft delete table inet crossborder_silicon
+
+[Install]
+WantedBy=multi-user.target

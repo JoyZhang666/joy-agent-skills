@@ -1,0 +1,21 @@
+[Unit]
+Description=Crossborder silicon VMess WS backend
+After=network-online.target crossborder-warp.service
+Wants=network-online.target
+
+[Service]
+User=crossborder-silicon
+Group=crossborder-silicon
+ExecStart=/opt/crossborder/silicon/current/xray run -config /opt/crossborder/silicon/current/xray.json
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
