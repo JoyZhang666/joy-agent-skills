@@ -3,7 +3,7 @@ name: crossborder-tunnel-kit
 description: 为自有或获授权的 Linux VPS 规划、部署和维护私有隧道，默认用 Hysteria2 IP直连与证书指纹，无需自有域名；可选域名/CDN、WARP、私密订阅和入口维护。交付 Mihomo YAML、导入指引及真实线路验收，处理连接、DNS、出口和视频播放问题。
 license: MIT
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
   author: JoyZhang666
 ---
 
@@ -18,6 +18,8 @@ metadata:
 - **主动选择 CDN：**此时才要求可管理域名，读 [cdn-warp.md](references/cdn-warp.md)。当前组合为 VMess AEAD / WebSocket / TLS → WARP 本地代理；CDN保护入口，WARP改变出口，不自动退回源站直连。
 - **私密订阅/入口维护：**已跑通 CDN 后读 [private-subscription.md](references/private-subscription.md)；固定接入端物理接口、受限发布、48小时巡检和一次异常复核。不把服务器自测当客户端可达。
 - **Reality 或其他出口：**读 [optional-routes.md](references/optional-routes.md)。先验收一条完整线路，再增加所需能力。
+
+- **国内应用卡顿、分流或巡检升级：**读 [domestic-routing.md](references/domestic-routing.md)，检查实际路由、DNS及UDP顺序；可选 cn-direct，不自动改变已有回国路线。
 
 ## 开始前与交付
 

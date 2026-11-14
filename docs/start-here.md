@@ -19,7 +19,7 @@
 | 清理文件名广告或有依据的乱码 | [批量命名整理](../batch-name-curation/README.md#新手安装) | Windows、Python 3.10+ 与虚构测试文件夹；先审批清单再改名 |
 | 整理 Get 笔记分类 | [GetNote 知识库整理](../getnote-knowledge-manager/README.md) | Get API 凭据、目标知识库与分类规则 |
 
-**进阶网络工具：** [mihomo 安装与运维](../mihomo-vpn-install/README.md)用于安装、配置和排障；[Crossborder Tunnel Kit](../crossborder-tunnel-kit/README.md)提供客户端 YAML 与导入指引，必须先准备自有或获授权 VPS；默认无需自有域名，域名/CDN、私密订阅与入口维护按需选择。两者需要 Linux 与网络基础，请先阅读外部条件与能力边界。
+**进阶网络工具：** [mihomo 安装与运维](../mihomo-vpn-install/README.md)用于安装、配置和排障；[Crossborder Tunnel Kit](../crossborder-tunnel-kit/README.md)提供客户端 YAML 与导入指引，必须先准备自有或获授权 VPS；默认无需自有域名，域名/CDN、私密订阅与入口维护按需选择；国内服务绕行或语音卡顿可按[分流说明](../crossborder-tunnel-kit/references/domestic-routing.md)检查和启用可选策略。两者需要 Linux 与网络基础，请先阅读外部条件与能力边界。
 
 ## 2. 下载完整目录
 
@@ -67,3 +67,4 @@ API 可以理解为软件与服务之间的调用入口；API Key 是你访问�
 ## 遇到问题怎么描述
 
 可以向 Agent 说明：“我选的是哪个项目、停在第几步、屏幕上的报错、希望得到什么”。公开反馈使用[仓库 Issues](https://github.com/JoyZhang666/joy-agent-skills/issues)，仅附虚构或脱敏示例。
+

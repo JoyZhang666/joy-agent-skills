@@ -34,7 +34,7 @@
 | 08 | 整理项目文件与交接 | [项目文件管理](project-file-management/README.md) | 工作区索引、项目登记与交接记录 |
 | 09 | 记录课程消耗与余额 | [课程课时台账](class-hours-ledger/README.md) | 本地课时流水、余额与一致性备份 |
 | 10 | 安装、维护代理工具 | [mihomo 安装与运维](mihomo-vpn-install/README.md) | 配置、检查、排障与回滚指引 |
-| 11 | 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo YAML；可选 CDN、私密订阅与入口维护 |
+| 11 | 用 VPS 配置客户端连接 | [Crossborder Tunnel Kit](crossborder-tunnel-kit/README.md) | Mihomo YAML；可选国内分流、CDN、私密订阅与入口维护 |
 | 12 | 批量整理文件与文件夹名称 | [批量命名整理](batch-name-curation/README.md) | 完整改名清单、获批执行后的核验结果与回滚入口 |
 
 <a name="技术工具"></a>
@@ -115,6 +115,9 @@ Joy 改编版，基于 KKKKhazix 的横纵分析方法；真实研究仍需核�
 
 ## 近期更新
 
+- **2026-11-14｜Crossborder Tunnel Kit v0.5.0：**新增可选国内直连、DNS/UDP分流与巡检性能诊断，整理订阅更新及现场排错经验；默认无需自有域名。[更新说明](crossborder-tunnel-kit/CHANGELOG.md)
+
+
 - **2026-11-07 · Crossborder Tunnel Kit v0.4.0：** 默认无需自有域名，新增证书指纹校验路线，以及可选 CDN 双入口、私密订阅和入口维护。[开始使用](crossborder-tunnel-kit/README.md)
 
 - **2026-10-26 · 批量命名整理 v1.1.0：** 新增文件与目录命名整理，先审批清单再执行，提供完整性核验与回滚。[开始使用](batch-name-curation/README.md#新手安装)
@@ -138,3 +141,4 @@ Get 会议行动基于 [Zara（zarazhangrui）的 lark-minutes-tasks](https://gi
 ## 隐私
 
 本仓库仅收录通用说明、脚本、空白模板和虚构示例。真实会议、个人配置、客户资料、登录凭据和运行日志不纳入仓库。上传前逐项检查文件；网页上传也需要人工检查，不能依赖 .gitignore 自动阻止敏感文件上传。
+

@@ -46,3 +46,8 @@ jobs:
       - name: Real TLS with loopback-only network namespace
         working-directory: crossborder-tunnel-kit
         run: sudo unshare --net --fork bash -c 'ip link set lo up; exec python3 -B tests/integration_hy2.py --artifacts "$1"' bash "$RUNNER_TEMP/hy2-native"
+
+      - name: Native domestic routing schema in isolated namespace
+        working-directory: crossborder-tunnel-kit
+        run: sudo unshare --net --fork bash -c 'ip link set lo up; exec python3 -B tests/native_routing.py --artifacts "$1"' bash "$RUNNER_TEMP/hy2-native"
+

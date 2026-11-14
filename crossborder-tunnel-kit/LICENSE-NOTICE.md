@@ -14,3 +14,9 @@ licenses or service terms; they are not bundled or relicensed here. The explicit
 integration-test downloader fetches fixed official Hysteria and Mihomo binaries
 into a separate temporary directory and verifies their SHA-256 values. Downloaded
 binaries and generated test certificates are excluded from the Skill archive.
+
+The optional cn-direct profile accepts operator-supplied rule snapshots. No
+MetaCubeX/meta-rules-dat dataset is bundled. That project's GPL-3.0 license and
+upstream data provenance must be reviewed separately before using or distributing
+its data, including data embedded in a generated YAML. Synthetic test domains and
+documentation IP ranges in this package are not a real geographic database.
