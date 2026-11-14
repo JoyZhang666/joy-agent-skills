@@ -115,6 +115,8 @@ Joy 改编版，基于 KKKKhazix 的横纵分析方法；真实研究仍需核�
 
 ## 近期更新
 
+- **2026-11-15｜Crossborder Tunnel Kit v0.5.1：**修复 Google Play API 与下载 CDN 的路由和 DNS 分流冲突，保留国内域名直连，并增加自动入口更新回归。[更新说明](crossborder-tunnel-kit/CHANGELOG.md)
+
 - **2026-11-14｜Crossborder Tunnel Kit v0.5.0：**新增可选国内直连、DNS/UDP分流与巡检性能诊断，整理订阅更新及现场排错经验；默认无需自有域名。[更新说明](crossborder-tunnel-kit/CHANGELOG.md)
 
 

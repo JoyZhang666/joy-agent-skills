@@ -2,15 +2,15 @@
 
 # Crossborder Tunnel Kit
 
-**v0.5.0 · 自有 VPS 必需 · 自有域名可选，默认无需填写**
+**v0.5.1 · 自有 VPS 必需 · 自有域名可选，默认无需填写**
 
 让 Agent 为自有或获授权的 Linux VPS 规划、部署和维护私有隧道，交付 Mihomo 客户端的个人 `tunnel-client.yaml`、导入指引和恢复说明。实际安装与网络验收由 Agent 在授权范围内完成；本项目不是一键安装器，也不提供服务器或共享节点。
 
 [第一次使用](https://github.com/JoyZhang666/joy-agent-skills/blob/main/docs/start-here.md) · [Agent 入口](SKILL.md) · [全部作品](https://github.com/JoyZhang666/joy-agent-skills) · [MIT](LICENSE)
 
-## v0.5.0 新增
+## v0.5.1 新增
 
-可选国内直连、DNS与UDP分流；巡检连接与性能分别记录。详见[配置与现场经验](references/domestic-routing.md)及[更新记录](CHANGELOG.md)。默认无需域名和旧接口保持兼容。
+修复 Google Play 页面正常却下载等待的域名与 DNS 分流冲突；保留国内域名直连，增加订阅入口更新后保留修复的回归。详见[配置与现场经验](references/domestic-routing.md)及[更新记录](CHANGELOG.md)。默认无需域名和旧接口保持兼容。
 
 ## 选择路线
 
@@ -77,4 +77,4 @@ Python 工具只需 **Python 3.10+ 标准库**。实际部署另需经校验的�
 
 视频失败先看[故障索引](references/troubleshooting.md)、[WARP链式说明](references/client-warp.md)和[实战经验](references/field-lessons.md)。向[仓库 Issues](https://github.com/JoyZhang666/joy-agent-skills/issues)反馈时只提供脱敏现象。来源及许可见 [LICENSE-NOTICE](LICENSE-NOTICE.md)。
 
-既有可用 YAML 可继续使用；要启用 v0.5.0 国内分流须按新策略重新生成并发布订阅，再在客户端更新。旧离线文件不会自动变化。封面和仓库导航为可选在线资源，核心说明可离线阅读。
+既有可用 YAML 可继续使用；要启用 v0.5.1 国内分流须按新策略重新生成并发布订阅，再在客户端更新。旧离线文件不会自动变化。封面和仓库导航为可选在线资源，核心说明可离线阅读。

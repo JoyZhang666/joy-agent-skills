@@ -3,7 +3,7 @@ name: crossborder-tunnel-kit
 description: 为自有或获授权的 Linux VPS 规划、部署和维护私有隧道，默认用 Hysteria2 IP直连与证书指纹，无需自有域名；可选域名/CDN、WARP、私密订阅和入口维护。交付 Mihomo YAML、导入指引及真实线路验收，处理连接、DNS、出口和视频播放问题。
 license: MIT
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
   author: JoyZhang666
 ---
 

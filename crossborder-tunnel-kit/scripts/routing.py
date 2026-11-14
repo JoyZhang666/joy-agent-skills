@@ -11,7 +11,7 @@ DOMESTIC = ['baidu.com', 'bdstatic.com', 'bdimg.com', 'bcebos.com',
 OVERSEAS = ['google.com', 'googleapis.com', 'gstatic.com', 'googlevideo.com',
             'youtube.com', 'ytimg.com', 'youtu.be', 'openai.com', 'chatgpt.com',
             'oaistatic.com', 'oaiusercontent.com', 'anthropic.com', 'claude.ai',
-            'cloudflare.com']
+            'cloudflare.com', 'googleapis.cn', 'xn--ngstr-lra8j.com']
 
 
 def snapshot(spec, kind):
@@ -69,7 +69,7 @@ def apply(client, values):
     rules += ['AND,((NETWORK,udp),(RULE-SET,overseas-domain)),REJECT',
               'AND,((NETWORK,tcp),(RULE-SET,overseas-domain)),SILICON']
     rules += ['DOMAIN-SUFFIX,' + d + ',DIRECT' for d in DOMESTIC]
-    rules += ['RULE-SET,cn-domain,DIRECT', 'RULE-SET,cn-ip,DIRECT,no-resolve',
+    rules += ['RULE-SET,cn-domain,DIRECT',
               'NETWORK,udp,REJECT', 'MATCH,SILICON']
     client['rules'] = rules
     local_dns = ['https://223.5.5.5/dns-query#DIRECT', 'https://223.6.6.6/dns-query#DIRECT']
@@ -80,7 +80,9 @@ def apply(client, values):
         'direct-nameserver': local_dns,
         'direct-nameserver-follow-policy': False,
         'nameserver': remote_dns,
-        'nameserver-policy': {'rule-set:cn-domain': local_dns,
+        'nameserver-policy': {'+.googleapis.cn': remote_dns,
+                              '+.xn--ngstr-lra8j.com': remote_dns,
+                              'rule-set:cn-domain': local_dns,
                               'rule-set:overseas-domain': remote_dns,
                               **{'+.' + d: local_dns for d in DOMESTIC}},
         'fake-ip-filter': ['*.lan', 'localhost', 'rule-set:cn-domain'] + ['+.' + d for d in DOMESTIC],
