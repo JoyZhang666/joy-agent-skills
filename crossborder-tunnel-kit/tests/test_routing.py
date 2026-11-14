@@ -40,12 +40,36 @@ class RoutingTests(unittest.TestCase):
         c = json.loads(bundle['tunnel-client.yaml'])
         self.assertLess(c['rules'].index('RULE-SET,cn-domain,DIRECT'), c['rules'].index('NETWORK,udp,REJECT'))
         self.assertEqual(c['rules'][-1], 'MATCH,SILICON')
+        self.assertNotIn('RULE-SET,cn-ip,DIRECT,no-resolve', c['rules'])
         self.assertTrue(all(n['uuid'] == self.values['uuid'] and not n['skip-cert-verify'] for n in c['proxies']))
         self.assertEqual(c['dns']['nameserver-policy']['rule-set:cn-domain'], c['dns']['direct-nameserver'])
         self.assertEqual(c['dns']['nameserver-policy']['rule-set:overseas-domain'], c['dns']['nameserver'])
         self.assertIn('rule-set:cn-domain', c['dns']['fake-ip-filter'])
         for name in ('xray.json', 'caddy.json'):
             self.assertEqual(bundle[name], original[name])
+
+    def test_google_play_exception_survives_domestic_match_and_edge_update(self):
+        self.data['domain'] = self.spec('domain', '+.googleapis.cn\n+.domestic.example.com\n')
+        values = self.routed()
+        target = ['104.17.0.1', '104.18.0.1']
+        old = cdn.configs(values)['tunnel-client.yaml'].encode()
+        (self.root / 'current.yaml').write_bytes(old)
+        expected = cdn.configs(dict(values, cdn_addresses=target))['tunnel-client.yaml'].encode()
+        policy = dict(values=values, allowed_addresses=self.values['cdn_addresses'] + target)
+        subscription.transact(self.root, policy, dict(op='publish',
+            expected_sha256=subscription.digest(old), expected_new_sha256=subscription.digest(expected),
+            addresses=target))
+        self.assertEqual((self.root / 'current.yaml').read_bytes(), expected)
+        with patch.object(cdn, 'yaml_text', json.dumps):
+            c = json.loads(cdn.configs(dict(values, cdn_addresses=target))['tunnel-client.yaml'])
+        for domain in ['googleapis.cn', 'xn--ngstr-lra8j.com']:
+            self.assertIn('+.' + domain, c['rule-providers']['overseas-domain']['payload'])
+            self.assertEqual(c['dns']['nameserver-policy']['+.' + domain],
+                             ['https://1.1.1.1/dns-query#SILICON'])
+        self.assertLess(c['rules'].index('AND,((NETWORK,tcp),(RULE-SET,overseas-domain)),SILICON'),
+                        c['rules'].index('RULE-SET,cn-domain,DIRECT'))
+        self.assertIn('DOMAIN-SUFFIX,baidu.com,DIRECT', c['rules'])
+        self.assertNotIn('RULE-SET,cn-ip,DIRECT,no-resolve', c['rules'])
 
     def test_invalid_data_fails_closed(self):
         for kind, content in [('domain', '+.*\n'), ('domain', 'example.com,DIRECT\n'),
