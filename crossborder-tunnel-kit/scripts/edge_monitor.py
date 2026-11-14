@@ -17,6 +17,40 @@ import probe
 from subscription import atomic
 
 
+def error_code(exc):
+    """Only allowlisted classifications; never log private exception payloads."""
+    message = str(exc)
+    known = {'core changed; review new binary first': 'core_pin_mismatch',
+             'restricted publisher unavailable': 'publisher_transport_failed',
+             'publisher refused request': 'publisher_rejected',
+             'publication readback mismatch; manual inspection required': 'publication_readback_failed',
+             'routing snapshot integrity mismatch': 'rule_snapshot_mismatch'}
+    if message in known:
+        return known[message]
+    if isinstance(exc, subprocess.TimeoutExpired):
+        return 'probe_or_transport_timeout'
+    if isinstance(exc, subprocess.CalledProcessError):
+        return 'core_config_validation_failed'
+    return 'local_validation_or_runtime_error'
+
+
+def quality(performance, current):
+    measured = [performance[a] for a in current if a in performance]
+    if not measured:
+        return 'not_measured'
+    if len(measured) != len(current):
+        return 'partially_measured'
+    samples = [s for p in measured for s in p['small_requests'] + [p['download_5mb']]]
+    if any(s['exit_code'] != 0 for s in samples):
+        return 'target_sample_failed'
+    if (any(s.get('http') not in ('200', '204') or s.get('seconds') is None for s in samples)
+            or any(p['download_5mb'].get('bytes') != 5_000_000 for p in measured)):
+        return 'target_sample_incomplete'
+    if any(s['seconds'] > 3 for p in measured for s in p['small_requests']):
+        return 'small_request_latency_above_target'
+    return 'bounded_samples_ok'
+
+
 def choose(current, candidates, results, streaks):
     updated = {}
     for address in candidates:
@@ -65,19 +99,25 @@ def run(settings, state_path):
     if len(status['addresses']) != 2 or any(a not in candidates for a in status['addresses']):
         raise ValueError('published pool differs from reviewed candidates')
     values = cdn.read_values(settings['values_file'])
-    results, timings = {}, {}
+    results, timings, performance = {}, {}, {}
     for address in candidates:
         with tempfile.TemporaryDirectory(prefix='edge-check-', dir=state_path.parent) as directory:
             config = Path(directory)/'client.yaml'
             config.write_text(cdn.configs(dict(values, cdn_addresses=[address]))['tunnel-client.yaml'], encoding='utf-8', newline='\n')
             test = probe.probe(SimpleNamespace(config=str(config), mihomo=settings['mihomo'],
-                                              curl=settings['curl'], interface=settings['interface']))
+                                              curl=settings['curl'], interface=settings['interface'],
+                                              performance=settings.get('performance', False)))
             results[address] = test['request_succeeded'] and test['warp_on']
             timings[address] = test['seconds']
+            if 'performance' in test:
+                performance[address] = test['performance']
     selected, streaks = choose(status['addresses'], candidates, results, streaks)
     record = {'success': True, 'checked_epoch': now, 'time_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'interface': settings['interface'], 'results': results, 'seconds': timings, 'streaks': streaks,
-              'addresses_before': status['addresses'], 'addresses_after': status['addresses'], 'published': False}
+              'addresses_before': status['addresses'], 'addresses_after': status['addresses'], 'published': False,
+              'performance': performance,
+              'quality': quality(performance, status['addresses']),
+              'health': 'ok' if all(results[a] for a in status['addresses']) else 'current_entry_unreachable'}
     if selected != status['addresses']:
         # Recheck complete rendered pool with native parser and a real request immediately before commit.
         with tempfile.TemporaryDirectory(prefix='pool-check-', dir=state_path.parent) as directory:
@@ -144,6 +184,7 @@ def main():
             return 0
         except Exception as exc:
             error = {'success': False, 'error_type': type(exc).__name__,
+                     'error_code': error_code(exc),
                      'time_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                      'message': 'No unverified pool published; inspect local protected settings and connectivity.'}
             atomic(settings_path.with_name('last-result.json'), json.dumps(error).encode(), 0o600)

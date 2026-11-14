@@ -10,11 +10,16 @@ import stat
 import uuid
 
 from render import yaml_text
+import routing
 
 
 def validate(values):
     if not isinstance(values, dict):
         raise ValueError('object required')
+    if values.get('routing_profile') not in (None, routing.PROFILE):
+        raise ValueError('unsupported routing profile')
+    if values.get('routing_profile') is None and any(k in values for k in ('routing_data', 'direct_processes')):
+        raise ValueError('routing options require cn-direct profile')
     domain = values['domain']
     if not isinstance(domain, str) or len(domain) > 253 or not re.fullmatch(
         r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}', domain
@@ -91,6 +96,8 @@ def configs(values):
         group['proxies'] = [node['name'] for node in client['proxies']]
         if len(client['proxies']) > 1:
             group.update(type='fallback', url='https://www.gstatic.com/generate_204', interval=60)
+    if v.get('routing_profile') == routing.PROFILE:
+        routing.apply(client, v)
     caddy = {
         'admin': {'disabled': True},
         'apps': {

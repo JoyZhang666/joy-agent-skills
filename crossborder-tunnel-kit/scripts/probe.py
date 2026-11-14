@@ -74,8 +74,25 @@ def probe(args, bad_auth=False):
                                     'https://www.cloudflare.com/cdn-cgi/trace'],
                                    capture_output=True,text=True,timeout=45,creationflags=flags)
                 trace = dict(line.split('=',1) for line in r.stdout.splitlines() if '=' in line)
-                return {'request_succeeded':r.returncode==0,'warp_on':trace.get('warp')=='on',
-                        'country':trace.get('loc'),'seconds':round(time.monotonic()-started,2)}
+                result = {'request_succeeded':r.returncode==0,'warp_on':trace.get('warp')=='on',
+                          'country':trace.get('loc'),'seconds':round(time.monotonic()-started,2)}
+                if getattr(args, 'performance', False) and result['request_succeeded'] and result['warp_on']:
+                    samples = []
+                    for url in ['https://www.gstatic.com/generate_204',
+                                'https://www.gstatic.com/generate_204',
+                                'https://speed.cloudflare.com/__down?bytes=5000000']:
+                        measurement = subprocess.run([
+                            args.curl, '-fsS', '--proxy', f'socks5h://127.0.0.1:{port}', '--noproxy', '',
+                            '--connect-timeout', '8', '--max-time', '25', '--max-filesize', '5000000', '-o', os.devnull,
+                            '-w', '%{http_code} %{time_total} %{speed_download} %{size_download}', url],
+                            capture_output=True, text=True, timeout=30, creationflags=flags)
+                        fields = measurement.stdout.split()
+                        samples.append({'exit_code': measurement.returncode, 'http': fields[0] if fields else None,
+                                        'seconds': float(fields[1]) if len(fields) == 4 else None,
+                                        'mbps': round(float(fields[2])*8/1e6, 2) if len(fields) == 4 else None,
+                                        'bytes': int(fields[3]) if len(fields) == 4 else 0})
+                    result['performance'] = {'small_requests': samples[:2], 'download_5mb': samples[2]}
+                return result
             finally:
                 process.terminate()
                 try:
@@ -92,6 +109,7 @@ def main():
     parser.add_argument('--sha256',required=True)
     parser.add_argument('--curl',default='curl.exe' if os.name=='nt' else 'curl')
     parser.add_argument('--negative-auth',action='store_true')
+    parser.add_argument('--performance', action='store_true', help='Collect bounded latency and 5MB download samples')
     parser.add_argument('--interface', help='Physical outgoing interface for this isolated core only')
     args=parser.parse_args()
     try:
