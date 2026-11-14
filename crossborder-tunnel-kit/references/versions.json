@@ -1,6 +1,6 @@
 {
   "skill_version": "0.5.1",
-  "status": "candidate",
+  "status": "release",
   "checked_date": "2026-11-15",
   "hysteria": {
     "version": "app/v2.12.2",
@@ -165,14 +165,35 @@
   },
   "current_release_validation": {
     "date": "2026-11-15",
-    "status": "pending_ci",
+    "status": "passed",
     "windows_local": {
       "run": 55,
       "passed": 46,
       "platform_skipped": 9
     },
     "ci_gate": "Windows/Linux Python 3.10 and 3.12; loopback-only HY2 handshake and native routing parse required before merge.",
-    "limits": "Engineering tests are not a security sandbox; Android user acceptance is separate from synthetic regression."
+    "limits": "Engineering tests are not a security sandbox; Android user acceptance is separate from synthetic regression.",
+    "ci_url": "https://github.com/JoyZhang666/joy-agent-skills/actions/runs/43621524362",
+    "tested_code_commit": "83b156257ef1484efd28ec324ec749650a4ce7e9",
+    "linux_ci": {
+      "python": [
+        "3.10",
+        "3.12"
+      ],
+      "run_per_version": 55,
+      "passed_per_version": 55,
+      "skipped": 0
+    },
+    "windows_ci": {
+      "python": [
+        "3.10",
+        "3.12"
+      ],
+      "run_per_version": 55,
+      "passed_per_version": 46,
+      "skipped_per_version": 9
+    },
+    "native_checks": "Loopback-only HY2 correct/wrong/missing/rotated/replaced-certificate checks and native cn-direct Mihomo parser passed."
   },
   "google_play_acceptance": {
     "date": "2026-11-15",
