@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "envelope": {
+    "id": {
+      "type": "text",
+      "scope": "table",
+      "role": "stable business identifier"
+    },
+    "version": {
+      "type": "integer",
+      "role": "record revision"
+    },
+    "hash": {
+      "type": "text",
+      "role": "content digest returned by the service"
+    }
+  },
+  "tables": {
+    "organizations": {
+      "fields": {
+        "name": {"type": "text", "required": true}
+      }
+    },
+    "contacts": {
+      "fields": {
+        "name": {"type": "text", "required": true},
+        "organization": {"type": "ref", "target": "organizations", "required": true}
+      }
+    },
+    "products": {
+      "fields": {
+        "name": {"type": "text", "required": true},
+        "description": {"type": "text"}
+      }
+    },
+    "stages": {
+      "fields": {
+        "name": {"type": "text", "required": true},
+        "position": {"type": "integer", "required": true}
+      }
+    },
+    "opportunities": {
+      "fields": {
+        "name": {"type": "text", "required": true},
+        "organization": {"type": "ref", "target": "organizations", "required": true},
+        "stage": {"type": "ref", "target": "stages", "required": true},
+        "contacts": {"type": "refs", "target": "contacts"},
+        "products": {"type": "refs", "target": "products"},
+        "sources": {"type": "refs", "target": "sources"},
+        "estimated_amount": {"type": "number"},
+        "currency": {"type": "text"},
+        "target_date": {"type": "date"}
+      }
+    },
+    "actions": {
+      "fields": {
+        "name": {"type": "text", "required": true},
+        "opportunity": {"type": "ref", "target": "opportunities", "required": true},
+        "owner": {"type": "text"},
+        "due_date": {"type": "date"},
+        "status": {"type": "text"},
+        "sources": {"type": "refs", "target": "sources"}
+      }
+    },
+    "sources": {
+      "fields": {
+        "name": {"type": "text", "required": true},
+        "reference": {"type": "text", "required": true},
+        "locator": {"type": "text"}
+      }
+    },
+    "audit": {
+      "system": true,
+      "fields": {
+        "request_key": {"type": "text", "required": true},
+        "actor": {"type": "text", "required": true},
+        "session": {"type": "text", "required": true},
+        "table_name": {"type": "text", "required": true},
+        "record_id": {"type": "text", "required": true},
+        "version_before": {"type": "integer"},
+        "version_after": {"type": "integer", "required": true},
+        "hash_before": {"type": "text"},
+        "hash_after": {"type": "text", "required": true},
+        "authorization": {"type": "text", "required": true},
+        "source_ref": {"type": "text"}
+      }
+    }
+  }
+}
