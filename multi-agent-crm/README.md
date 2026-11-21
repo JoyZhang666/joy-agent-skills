@@ -16,7 +16,18 @@
 
 ## 第一次使用：在本机登记一条虚构客户记录
 
-准备 Python 3.10 或以上版本。在技能包之外建立仅供指定系统用户访问的私有工作目录，用来存放数据库、密钥、请求文件、映射及备份。下列命令假设当前目录中可以找到 `crm.py`；在私有工作目录执行时，请将它换成脚本的完整路径。
+**下载完整目录。** 从仓库首页点击「Code → Download ZIP」，解压后找到 `multi-agent-crm` 文件夹。也可以用 Git 克隆整个仓库并进入同名目录。请保留该目录内的全部文件，程序运行时会读取同目录的 `schema.json` 和 `SKILL.md`。
+
+**确认 Python 能运行。** 需要 Python 3.10 或以上版本，并能加载标准库的 SQLite 模块。先运行：
+
+```text
+python --version
+python -c "import sqlite3; print(sqlite3.sqlite_version)"
+```
+
+Windows 上，即使能找到 `python.exe`，也可能只是会打开 Microsoft Store 的执行别名。如果命令无版本输出、跳出商店或返回 9009，试用 `py -3` 或当前工具环境中已安装的 Python 的完整路径，并用上面两条命令核验它。后续命令中的 `python` 都换为同一个可用解释器。如果使用 PowerShell，带空格的可执行文件路径可写成 `& "解释器完整路径"`。电脑没有可用解释器时，可从 [Python 官方下载页](https://www.python.org/downloads/) 安装后重试。
+
+**单独存放测试数据。** 在技能包之外创建一个新的私有目录并将终端切到该目录，用于保存数据库、密钥、请求文件和备份。以下命令均在该私有目录中执行，请把 `crm.py` 换成刚下载的脚本的带引号完整路径。这样命令中相对的数据库和密钥路径都留在私有目录内。
 
 **1. 管理员初始化数据库，为两个 Agent 分别登记身份。**
 
@@ -26,7 +37,15 @@ python crm.py --db workspace.sqlite register operator-a --key-file operator-a.ke
 python crm.py --db workspace.sqlite register operator-b --key-file operator-b.key
 ```
 
-**2. 在各自会话中选择身份，读取手册，再查询组织。** 将 `CRM_ACTOR`、`CRM_KEY_FILE` 和 `CRM_SESSION` 分别设为该 Agent 的登记名、自己的密钥文件路径和真实会话标识。PowerShell 可用 `$env:CRM_ACTOR='operator-a'`，其他变量用相同方式设置；在 POSIX 系统中使用 `export`。能够直接修改协调库的系统账号也能绕过命令行检查，请限制该主机上的文件与终端权限。
+**2. 在各自会话中选择身份，读取手册，再查询组织。** 将 `CRM_ACTOR`、`CRM_KEY_FILE` 和 `CRM_SESSION` 分别设为该 Agent 的登记名、自己的密钥文件路径和真实会话标识。在 PowerShell 中，从上述私有目录运行以下命令。将最后一项换成当前的实际会话标识。
+
+```powershell
+$env:CRM_ACTOR = 'operator-a'
+$env:CRM_KEY_FILE = (Resolve-Path -LiteralPath './operator-a.key').Path
+$env:CRM_SESSION = '填写当前会话标识'
+```
+
+在 POSIX 系统中使用 `export` 设置相同的三个变量。能够直接修改协调库的系统账号也能绕过命令行检查，请限制主机上的文件与终端权限。
 
 ```text
 python crm.py --db workspace.sqlite handbook
@@ -49,6 +68,8 @@ python crm.py --db workspace.sqlite sync example.json --dry-run
 python crm.py --db workspace.sqlite query organizations org-example
 python crm.py --db workspace.sqlite history organizations org-example
 ```
+
+空库查询返回 `not_found`；预检返回 `dry_run` 和 `write_ready=true`；提交成功返回 `saved_and_verified`。用 `query` 查到刚写入的记录后，再用 `history` 核对请求键、经办人、会话、版本和写入后哈希。写入后哈希应与查询中该版本的哈希一致。
 
 更新时使用刚查到的版本和哈希，只填写要改的字段。每个新意图使用新请求键；同一请求断线后，用原身份、原键续接。队首请求待处理时，后续写入排队。远端结果不明确时，先核对业务和审计，必要时交管理员处理。
 
