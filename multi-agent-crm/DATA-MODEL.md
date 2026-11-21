@@ -1,40 +1,40 @@
-# CRM data model
+# CRM 数据结构
 
-Schema version 1 defines seven business tables and a system audit table. Installers can inspect [schema.json](schema.json) to see every field, type, required flag and link target. No seed data is required. An installation supplies its own organizations, product catalog and stage vocabulary.
+结构版本 1 包含七张业务表和一张系统审计表。`schema.json` 列出各字段的类型、必填标记和关联目标。安装时无需预置业务数据，组织、产品和销售阶段由使用者自行登记。[查看完整字段定义](schema.json)
 
-## Tables and relationships
+## 每张表记录什么？
 
-| Table | One row represents | Required fields | Other fields |
+| 表名 | 一条记录代表什么 | 必填字段 | 可选字段 |
 |---|---|---|---|
-| organizations | A distinct business organization | name | — |
-| contacts | A person associated with one organization | name, organization | — |
-| products | An item or service in the catalog | name | description |
-| stages | A reusable stage in the sales process | name, position | — |
-| opportunities | A potential deal with one organization at one stage | name, organization, stage | contacts, products, sources, estimated_amount, currency, target_date |
-| actions | A task associated with one opportunity | name, opportunity | owner, due_date, status, sources |
-| sources | An evidence reference | name, reference | locator |
-| audit | An accepted change to a business record | request_key, actor, session, table_name, record_id, version_after, hash_after, authorization | version_before, hash_before, source_ref |
+| 组织 `organizations` | 一个独立业务主体 | 名称 `name` | — |
+| 联系人 `contacts` | 隶属某一组织的个人 | 姓名 `name`、组织 `organization` | — |
+| 产品 `products` | 一项产品或服务 | 名称 `name` | 描述 `description` |
+| 阶段 `stages` | 可重复使用的销售阶段 | 名称 `name`、显示顺序 `position` | — |
+| 商机 `opportunities` | 某一组织处于某一阶段的潜在业务 | 名称 `name`、组织 `organization`、阶段 `stage` | 联系人、产品、来源、预估金额、币种、目标日期 |
+| 行动 `actions` | 属于某条商机的一项任务 | 名称 `name`、商机 `opportunity` | 负责人、截止日期、状态、来源 |
+| 来源 `sources` | 一份可定位的证据 | 名称 `name`、原始资料引用 `reference` | 页码、章节等位置 `locator` |
+| 审计 `audit` | 一次经接受的业务修改 | 请求键、经办身份、会话、业务表名、记录 ID、修改后版本与哈希、授权引用 | 修改前版本与哈希、来源引用 |
 
-A required `ref` references exactly one existing row in its target table. Multiple contacts may share one organization. Multiple actions may belong to one opportunity. A `refs` field represents zero or more distinct IDs. Two opportunities can reference the same product or contact. One source can support several deals and actions.
+必填的 `ref` 指向目标表中一条已存在的记录。例如，一个联系人隶属一个组织，一个组织可以登记多个联系人。`refs` 保存零个或多个互不重复的记录 ID。多个商机可以关联同一产品或联系人，一份来源也可供多个商机和行动引用。
 
-## Record identity and field values
+## 怎样标识记录与填写字段？
 
-A business row has a table-scoped stable ID, record version, content hash and typed business fields. Keep the ID when a person or organization changes its displayed name. Use the current version and hash returned by a live query when preparing an update. Concurrent edits require a fresh read and review. Retries of the same authorized request reuse its original request key.
+每条业务记录都有表内稳定的 ID、版本、内容哈希及业务字段。组织更名或联系人改名时保留 ID。更新前先查当前版本与哈希；若别人已修改，重新读取后审阅差异。重试同一项已获授权的修改时，保留原请求键。
 
-Text values are strings. Dates represent calendar dates in YYYY-MM-DD format. Stage position is an integer used for display order. Deal estimates are numeric values in the separately named currency. Supply a currency code with any estimate and keep different currencies separate in totals. Omit unknown optional values. Use source.reference to identify the original material and source.locator for a page, section or other precise location.
+文本字段填写字符串；日期格式为 `YYYY-MM-DD`；阶段显示顺序为整数。商机预估金额为数值，须同时填入币种代码，不同币种分别汇总。未知的可选字段可省略。来源表的 `reference` 指向原始材料，`locator` 标明页码、章节或其他准确位置。
 
-The audit table is maintained by the write service. Its record pointer consists of table_name and record_id. Version and hash fields identify the change. The actor, session, authorization reference and source reference document its origin. Authorization references are review identifiers and must contain no credentials.
+写入程序维护审计表。表名与记录 ID 共同指向业务记录；版本和哈希标识修改前后状态。经办身份、会话、授权及来源引用说明修改依据。授权引用只填写批准记录的位置，不放凭据。
 
-## Synthetic example
+## 虚构示例
 
-Create an organization with ID `org-example` and name `Example Workshop`, then create a stage with ID `stage-review`, name `Review` and position `1`. The business fields for a corresponding opportunity can then be represented as:
+先创建组织 `org-example`（示例工坊）和阶段 `stage-review`（评估，显示顺序 1）。关联这两条记录的商机可填写以下业务字段：
 
 ```json
 {
-  "name": "Sample assembly review",
+  "name": "示例组件评估",
   "organization": "org-example",
   "stage": "stage-review"
 }
 ```
 
-This fragment illustrates the field payload. The skill and client guide describe the complete request envelope and authorization steps.
+以上为请求中的 `fields` 部分。完整请求格式和提交步骤见[使用手册](SKILL.md)。

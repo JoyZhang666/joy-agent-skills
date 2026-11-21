@@ -1,10 +1,24 @@
-# Multi-agent CRM • preview 0.1
+# 多 Agent CRM
 
-This skill lets cooperating agents query and update organizations, contacts, products, sales stages, opportunities, actions and evidence. An eighth table stores audit entries. [Data model](DATA-MODEL.md) · [Machine-readable schema](schema.json) · [Agent handbook](SKILL.md)
+多个 AI 助手可以共同维护一份客户台账。一个助手创建商机，另一个查询最新进展、更新阶段或登记下一步行动。如果两个助手同时修改同一版本，系统会提示后提交的一方重新核对；通过审计记录，可以查到谁在什么会话中、依据什么来源做了修改。
 
-## Start a synthetic workspace
+本版为 **0.1.0-rc1**。数据模型包括组织、联系人、产品、销售阶段、商机、行动、来源和审计八张表。[数据结构与字段](DATA-MODEL.md) · [机器可读结构](schema.json) · [Agent 使用手册](SKILL.md)
 
-Use Python 3.10 or later on one trusted coordinator host. Create a private working directory outside this package. On Windows choose a directory accessible only to the intended operating-system user. Keep the coordinator database, key files, mapping, request files and backups there. Use the full path to crm.py if your working directory differs from the skill directory.
+## 没有云服务器怎么用？
+
+| 使用场景 | 部署方式 | 运行条件 |
+|---|---|---|
+| 多个 Agent 在同一台电脑 | 每个 Agent 使用自己的身份和会话，共用本机的协调器和数据库。协调器负责给写入请求排队。 | 使用 SQLite 可离线工作，电脑运行即可。 |
+| 多个 Agent 在不同电脑 | 选一台常开的办公电脑作为协调主机，SQLite 文件放在它的本地磁盘。其他设备通过你已配置的身份验证连接，在这台主机上调用命令。 | 协调主机须在线。已入队的请求在重启后保留；断线设备须保存尚未提交的意图，恢复后重新核对。 |
+| 希望办公电脑关机后仍可使用 | 可将同一套程序放到一台受信任的常开服务器。 | 租用云主机是可选项。 |
+
+同一份 CRM 的所有写入应经过同一个协调器。把 SQLite 文件放入网盘同步目录、各机各建协调库，都会失去统一的排队顺序。当前版本需要另行配置跨机访问，不提供自动故障切换或离线多端合并。本机 SQLite 和同机双 Agent 写飞书已实测；跨机网络部署尚未实测。
+
+## 第一次使用：在本机登记一条虚构客户记录
+
+准备 Python 3.10 或以上版本。在技能包之外建立仅供指定系统用户访问的私有工作目录，用来存放数据库、密钥、请求文件、映射及备份。下列命令假设当前目录中可以找到 `crm.py`；在私有工作目录执行时，请将它换成脚本的完整路径。
+
+**1. 管理员初始化数据库，为两个 Agent 分别登记身份。**
 
 ```text
 python crm.py --db workspace.sqlite init
@@ -12,36 +26,36 @@ python crm.py --db workspace.sqlite register operator-a --key-file operator-a.ke
 python crm.py --db workspace.sqlite register operator-b --key-file operator-b.key
 ```
 
-Give each process its assigned actor and key file through CRM_ACTOR and CRM_KEY_FILE. Set CRM_SESSION to its actual session identifier. In PowerShell use `$env:CRM_ACTOR='operator-a'` and set the other two variables the same way. On POSIX use `export`. Only the operator runs init and register. Accounts with filesystem access to the coordinator can bypass the CLI, so keep the database and credentials on the trusted host. Each installation uses one coordinator for its Base. Remote agents need an existing authenticated way to invoke that host. Network transport and automatic background delivery are outside this preview.
+**2. 在各自会话中选择身份，读取手册，再查询组织。** 将 `CRM_ACTOR`、`CRM_KEY_FILE` 和 `CRM_SESSION` 分别设为该 Agent 的登记名、自己的密钥文件路径和真实会话标识。PowerShell 可用 `$env:CRM_ACTOR='operator-a'`，其他变量用相同方式设置；在 POSIX 系统中使用 `export`。能够直接修改协调库的系统账号也能绕过命令行检查，请限制该主机上的文件与终端权限。
 
 ```text
 python crm.py --db workspace.sqlite handbook
 python crm.py --db workspace.sqlite query organizations
+```
+
+**3. 先预检，再按授权提交。** 在私有工作目录将以下内容以 UTF-8 保存为 `example.json`。新建记录时，预期版本填 `0`，预期哈希填 `null`。
+
+```json
+{"request_key":"example-create-1","kind":"organizations","id":"org-example","expected_version":0,"expected_hash":null,"fields":{"name":"示例工坊"},"source_ref":"synthetic-example-1"}
+```
+
+```text
 python crm.py --db workspace.sqlite sync example.json --dry-run
 ```
 
-In a fresh synthetic database use the following example.json.
+获得该项业务授权后，将 `--dry-run` 换成 `--authorization` 加实际批准记录的引用。提交后分别回读业务和审计。
 
-```json
-{"request_key":"example-create-1","kind":"organizations","id":"org-example","expected_version":0,"expected_hash":null,"fields":{"name":"Example Workshop"},"source_ref":"synthetic-example-1"}
+```text
+python crm.py --db workspace.sqlite query organizations org-example
+python crm.py --db workspace.sqlite history organizations org-example
 ```
 
-For an authorized test, add `--authorization` followed by the approval reference in place of `--dry-run`. Read the row and its history by kind and ID. For subsequent updates, include only changed fields and the current record version and hash. Use another request key for each new intent. Independent processes share the same sequence of accepted requests. If the head is pending, other requests wait. Resume with the owning identity and original key; ambiguous remote effects require reconciliation and may need operator review.
+更新时使用刚查到的版本和哈希，只填写要改的字段。每个新意图使用新请求键；同一请求断线后，用原身份、原键续接。队首请求待处理时，后续写入排队。远端结果不明确时，先核对业务和审计，必要时交管理员处理。
 
-## Feishu
+## 使用飞书多维表格
 
-Use a fresh, dedicated test Base, a signed-in user and the external vendor CLI. Initialize its tables and save the mapping outside the package, then initialize a separate coordinator database using `init --feishu-config MAPPING`. See the [Feishu setup guide](FEISHU.md) for the installed CLI requirements. The application actor in each audit and the vendor login used for API access are separate identities. Both data backends use the same business schema.
+准备独立空白测试库、已登录的飞书用户和官方命令行工具。初始化八张表，将返回的映射保存在技能包外，再用 `init --feishu-config` 指定映射文件，新建对应的协调库。飞书模式需要网络。审计中的 Agent 身份与访问飞书 API 的登录账号分别记录；多个 Agent 可在同一飞书用户授权下协作。[飞书配置步骤](FEISHU.md)
 
-Keep backups of the database and its matched remote mapping; losing the coordinator loses request ownership, queue state and local audit indexing. This preview serializes cooperating writers. Direct edits or a second coordinator connected to the same Base can race with the application.
+请成对备份协调库和飞书映射。丢失协调库会丢失请求归属、队列状态和本地审计索引。直接编辑飞书表格或让另一个协调器写同一份数据，都可能产生并发冲突。
 
-## Hosting choices
-
-| Agents | Where commands run | Availability |
-|---|---|---|
-| Several agents on one computer | Each uses its own registered identity and session on the same local coordinator. SQLite-only mode works offline. | Active while the computer is running. No rented server is needed. |
-| Agents on multiple computers | Choose one workstation as the coordinator. Remote users invoke the CLI on it through a separately managed authenticated connection. Keep the SQLite file on that machine's local disk. | The workstation and its connection must be available. Pending intents already enqueued survive a restart. A disconnected client must retain its intent and revalidate before submission. |
-| An always-on hosted machine | Install the same CLI on a trusted server and invoke it there. | Optional for longer availability. The server is still a single coordinator. |
-
-For Feishu storage, the coordinator also needs network access to Feishu. Separate coordinators, independent local locks, a synced SQLite folder or direct user edits do not provide a shared FIFO guarantee. Provisioning remote access, failover and synchronization between disconnected writers are outside this release. Never grant untrusted agents unrestricted shell or filesystem access to the coordinator host.
-
-License: MIT. See LICENSE.
+本技能采用 [MIT 许可证](LICENSE)。
